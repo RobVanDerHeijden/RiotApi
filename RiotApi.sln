@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiotApi", "RiotApi\RiotApi.csproj", "{19ECB6AF-963A-4A05-A1E3-4838428204FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiotApi", "RiotApi\RiotApi.csproj", "{19ECB6AF-963A-4A05-A1E3-4838428204FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvcASP", "mvcASP\mvcASP.csproj", "{0FE1F16A-5F02-4CC3-9D66-22B8A576D17B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{19ECB6AF-963A-4A05-A1E3-4838428204FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19ECB6AF-963A-4A05-A1E3-4838428204FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19ECB6AF-963A-4A05-A1E3-4838428204FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FE1F16A-5F02-4CC3-9D66-22B8A576D17B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE1F16A-5F02-4CC3-9D66-22B8A576D17B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE1F16A-5F02-4CC3-9D66-22B8A576D17B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE1F16A-5F02-4CC3-9D66-22B8A576D17B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
