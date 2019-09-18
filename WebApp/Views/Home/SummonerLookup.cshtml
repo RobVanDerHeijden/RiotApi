@@ -1,0 +1,46 @@
+﻿@model WebApp.Models.SummonerViewModel
+
+@{
+    ViewData["Title"] = "SummonerLookup";
+}
+
+<h2>SummonerLookup</h2>
+
+<h4>SummonerViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SummonerLookup">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SummonerName" class="control-label"></label>
+                <input asp-for="SummonerName" class="form-control" value="FriendlyRob" />
+                <span asp-validation-for="SummonerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Region" class="control-label"></label>
+                <input asp-for="Region" class="form-control" value="EUW1" />
+                <span asp-validation-for="Region" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lookup" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+    @if (TempData["SummonerLevel"] != null)
+    {
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-4" style="border: 1px solid red">
+            Summoner Level: @TempData["SummonerLevel"]
+        </div>
+    }
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
