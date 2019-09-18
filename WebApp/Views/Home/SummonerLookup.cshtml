@@ -1,4 +1,5 @@
-﻿@model WebApp.Models.SummonerViewModel
+﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
+@model WebApp.Models.SummonerViewModel
 
 @{
     ViewData["Title"] = "SummonerLookup";
@@ -18,10 +19,9 @@
                 <span asp-validation-for="SummonerName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Region" class="control-label"></label>
-                <input asp-for="Region" class="form-control" value="EUW1" />
-                <span asp-validation-for="Region" class="text-danger"></span>
+                @Html.DropDownListFor(model => model.Region, new SelectList(ViewBag.RegionList))
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="Lookup" class="btn btn-default" />
             </div>
@@ -31,7 +31,11 @@
     {
         <div class="col-md-2">
         </div>
+        
         <div class="col-md-4" style="border: 1px solid red">
+            <div style="float:left">
+                <img src="~/images/profileicon/@(TempData["ProfileIconId"]).png">
+            </div>
             Summoner Level: @TempData["SummonerLevel"]
         </div>
     }

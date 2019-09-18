@@ -15,5 +15,15 @@ namespace RiotApi.Controller
 
             return summoner != null;
         }
+
+        public List<string> GetRegions()
+        {
+            List<string> regionEndPoints = new List<string>()
+            {
+                "EUW1",
+                "NA1"
+            };
+            return regionEndPoints;
+        }
     }
 }

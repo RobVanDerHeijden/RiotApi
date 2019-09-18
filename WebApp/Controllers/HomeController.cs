@@ -57,6 +57,10 @@ namespace WebApp.Controllers
 
         public IActionResult SummonerLookup()
         {
+            List<string> Regions = new List<string>();
+            Regions = _controllerMain.GetRegions();
+            ViewBag.RegionList = Regions;
+            
             return View();
         }
 
@@ -70,8 +74,8 @@ namespace WebApp.Controllers
             {
                 Summoner_V4 summV4 = new Summoner_V4(summoner.Region);
                 SummonerDTO summonerDto = summV4.GetSummonerByName(summoner.SummonerName);
-                //Debug.WriteLine("Succes| SummonerLevel: " + summonerDto.SummonerLevel);
                 TempData["SummonerLevel"] = summonerDto.SummonerLevel;
+                TempData["ProfileIconId"] = summonerDto.ProfileIconId;
             }
             else
             {
