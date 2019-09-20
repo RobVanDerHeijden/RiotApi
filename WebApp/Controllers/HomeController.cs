@@ -15,7 +15,6 @@ namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        //private SummonerViewModel _summonerViewModel;
         private ControllerMain _controllerMain;
         private ViewModelMain _viewModelMain;
 
