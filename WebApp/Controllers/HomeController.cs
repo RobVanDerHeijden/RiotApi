@@ -10,6 +10,7 @@ using RiotApi.Controller;
 using RiotApi.Model;
 using RiotApi.View.ViewModel;
 using WebApp.Models;
+using ViewModelMain = WebApp.Models.ViewModelMain;
 
 namespace WebApp.Controllers
 {
