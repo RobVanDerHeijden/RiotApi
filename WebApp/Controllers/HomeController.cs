@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using RiotApi.API;
 using RiotApi.Controller;
 using RiotApi.Model;
-using RiotApi.View.ViewModel;
 using WebApp.Models;
 using ViewModelMain = WebApp.Models.ViewModelMain;
 
