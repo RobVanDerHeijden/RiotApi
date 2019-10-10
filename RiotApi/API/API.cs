@@ -14,10 +14,10 @@ namespace RiotApi.API
         public API(string region)
         {
             Region = region;
-            Key = GetKey("API/APIKey.txt");
+            Key = GetAPIKey("API/APIKey.txt");
         }
 
-        protected HttpResponseMessage GET(string URL)
+        protected HttpResponseMessage GetHttpResponse(string URL)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -28,12 +28,12 @@ namespace RiotApi.API
             }
         }
 
-        protected string GetURI(string path)
+        protected string GetCombinedURI(string path)
         {
             return "https://" + Region + ".api.riotgames.com/lol/" + path + "?api_key=" + Key;
         }
 
-        public string GetKey(string path)
+        public string GetAPIKey(string path)
         {
             StreamReader sr = new StreamReader(path);
             return sr.ReadToEnd();

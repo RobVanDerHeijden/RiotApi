@@ -10,9 +10,9 @@ namespace Model
         public int IdAccount { get; set; }
         public string Name { get; set; }
         public int SummonerLevel { get; set; }
-        public int IdProfileIcon { get; set; }
+        public int ProfileIconId { get; set; }
         public string HighestPreviousRank { get; set; }
-        public DateTime RevisionDate { get; set; } // comes in as int, converted with epoch
+        public long RevisionDateLong { get; set; } // comes in as long, TODO: convert with epoch to Datetime
         public DateTime LastUpdated { get; set; }
         public Lane PreferedPosition { get; set; }
         public Tag ChampTagStyle { get; set; }
