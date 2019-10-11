@@ -8,9 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Model;
 using RiotApi.API;
 using RiotApi.Controller;
-using RiotApi.Model;
 using WebApp.Models;
-using ViewModelMain = WebApp.Models.ViewModelMain;
 
 namespace WebApp.Controllers
 {
@@ -25,9 +23,8 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
-            List<string> Regions = new List<string>();
-            Regions = _controllerMain.GetRegions();
-            ViewBag.RegionList = Regions;
+            List<string> regions = _controllerMain.GetRegions();
+            ViewBag.RegionList = regions;
 
             return View();
         }
@@ -47,12 +44,11 @@ namespace WebApp.Controllers
             }
             else
             {
-                Debug.WriteLine("Nope");
+                Debug.WriteLine("No summoner found.");
             }
 
-            List<string> Regions = new List<string>();
-            Regions = _controllerMain.GetRegions();
-            ViewBag.RegionList = Regions;
+            List<string> regions = _controllerMain.GetRegions();
+            ViewBag.RegionList = regions;
 
             return View();
         }
