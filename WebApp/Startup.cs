@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Data.Contexts.Memory;
+using Data.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +32,12 @@ namespace WebApp
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+
+            //services.AddTransient<ISummonerContext, SummonerMemoryContext>(); // Always Different: new instance
+            //services.AddSingleton<ISummonerContext, SummonerMemoryContext>(); // Same with same request
+            services.AddScoped<ISummonerContext, SummonerMemoryContext>(); // Same for every object and every request
+            //services.AddScoped<ISummonerContext, SummonerSqlContext>(); // Same for every object and every request
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

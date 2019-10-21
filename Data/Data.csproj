@@ -9,10 +9,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\Memory\" />
     <Folder Include="Contexts\SQL\" />
     <Folder Include="DatabaseBackups\" />
-    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>

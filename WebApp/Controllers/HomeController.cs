@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Data.Interfaces;
+using Logic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
@@ -15,15 +17,17 @@ namespace WebApp.Controllers
     public class HomeController : Controller
     {
         private ControllerMain _controllerMain;
+        private SummonerLogic _summonerLogic;
 
-        public HomeController()
+        public HomeController(ISummonerContext summonerContext)
         {
             _controllerMain = new ControllerMain();
+            _summonerLogic = new SummonerLogic(summonerContext);
         }
 
         public IActionResult Index()
         {
-            List<string> regions = _controllerMain.GetRegions();
+            List<string> regions = _summonerLogic.GetRegions();
             ViewBag.RegionList = regions;
 
             return View();
@@ -31,23 +35,16 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(ViewModelMain summoner)
+        public IActionResult Index(ViewModelMain summonerViewModel)
         {
-            if (_controllerMain.DoesSummonerExist(summoner.Region, summoner.SummonerName))
-            {
-                Summoner_V4 summV4 = new Summoner_V4(summoner.Region);
+                Summoner_V4 summV4 = new Summoner_V4(summonerViewModel.Region);
 
-                //SummonerDTO summonerDto = summV4.GetSummonerByName(summoner.SummonerName); 
-                Summoner summoner2 = summV4.GetSummonerByName(summoner.SummonerName); // TODO: this is second API call. Is it needed??
-                TempData["SummonerLevel"] = summoner2.SummonerLevel;
-                TempData["ProfileIconId"] = summoner2.ProfileIconId;
-            }
-            else
-            {
-                Debug.WriteLine("No summoner found.");
-            }
+                //SummonerDTO summonerDto = summV4.GetSummonerByName(summonerViewModel.SummonerName); 
+                Summoner summoner = _summonerLogic.GetSummonerByName(summonerViewModel.Region, summonerViewModel.SummonerName); // TODO: this is second API call. Is it needed??
+                TempData["SummonerLevel"] = summoner.SummonerLevel;
+                TempData["ProfileIconId"] = summoner.ProfileIconId;
 
-            List<string> regions = _controllerMain.GetRegions();
+            List<string> regions = _summonerLogic.GetRegions();
             ViewBag.RegionList = regions;
 
             return View();
