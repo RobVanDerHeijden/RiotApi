@@ -7,7 +7,7 @@ namespace Model
 {
     public class Champion
     {
-        public int  Ket { get; set; }
+        public int Key { get; set; }
         public string KeyName { get; set; }
         public string ChampionName { get; set; }
         public string Title { get; set; }

@@ -1,27 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Data.Interfaces;
 using Logic;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
-using RiotApi.API;
-using RiotApi.Controller;
 using WebApp.Models;
 
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private ControllerMain _controllerMain;
-        private SummonerLogic _summonerLogic;
+        private readonly SummonerLogic _summonerLogic;
 
         public HomeController(ISummonerContext summonerContext)
         {
-            _controllerMain = new ControllerMain();
             _summonerLogic = new SummonerLogic(summonerContext);
         }
 
@@ -37,12 +29,16 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(ViewModelMain summonerViewModel)
         {
-                Summoner_V4 summV4 = new Summoner_V4(summonerViewModel.Region);
-
-                //SummonerDTO summonerDto = summV4.GetSummonerByName(summonerViewModel.SummonerName); 
-                Summoner summoner = _summonerLogic.GetSummonerByName(summonerViewModel.Region, summonerViewModel.SummonerName); // TODO: this is second API call. Is it needed??
-                TempData["SummonerLevel"] = summoner.SummonerLevel;
-                TempData["ProfileIconId"] = summoner.ProfileIconId;
+            // TODO: Add if summoner is null
+            // TODO: add additional info
+            // TODO: add getmatches
+            Summoner summoner = _summonerLogic.GetSummonerByName(summonerViewModel.Region, summonerViewModel.SummonerName);
+            TempData["SummonerName"] = summoner.Name;
+            TempData["SummonerLevel"] = summoner.SummonerLevel;
+            TempData["ProfileIconId"] = summoner.ProfileIconId;
+            TempData["RevisionDate"] = summoner.RevisionDateLong;
+            SummonerPlayedGameList summonerPlayedGames = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner.AccountId);
+            ViewBag.PlayedGames = summonerPlayedGames.Matches;
 
             List<string> regions = _summonerLogic.GetRegions();
             ViewBag.RegionList = regions;

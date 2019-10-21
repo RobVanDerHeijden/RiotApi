@@ -21,18 +21,14 @@ namespace Logic
         }
         public Summoner GetSummonerByName(string region, string summonerName)
         {
-            Summoner summoner = new Summoner();
-
-            summoner = _iSummonerContext.GetSummonerByName(region, summonerName);
-
+            Summoner summoner = _iSummonerContext.GetSummonerByName(region, summonerName);
             return summoner;
         }
-
-
-
-        //public List<SummonerPlayedGame> GetSummonerPlayedGames()
-        //{
-
-        //}
+        
+        public SummonerPlayedGameList GetSummonerPlayedGames(string region, string summonerIdAccount)
+        {
+            SummonerPlayedGameList summonerPlayedGames = _iSummonerContext.GetSummonerPlayedGames(region, summonerIdAccount);
+            return summonerPlayedGames;
+        }
     }
 }

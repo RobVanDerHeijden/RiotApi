@@ -9,5 +9,6 @@ namespace Data.Interfaces
     {
         List<string> GetRegions();
         Summoner GetSummonerByName(string region, string summonerName);
+        SummonerPlayedGameList GetSummonerPlayedGames(string region, string summonerIdAccount);
     }
 }

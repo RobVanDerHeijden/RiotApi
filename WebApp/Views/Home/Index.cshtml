@@ -22,7 +22,8 @@
                 @Html.DropDownListFor(model => model.Region, new SelectList(ViewBag.RegionList))
             </div>
             @*<span>@((ViewBag.RegionList as Dictionary<string, string>).Count)</span>*@
-
+            
+            
 
             <div class="form-group">
                 <input type="submit" value="Lookup" class="btn btn-default" />
@@ -39,7 +40,18 @@
                 <img src="~/images/profileicon/@(TempData["ProfileIconId"]).png">
             </div>
             Summoner Level: @TempData["SummonerLevel"]
+            
+            @if (ViewBag.PlayedGames != null)
+            {
+                <ul>
+                    @foreach (var game in ViewBag.PlayedGames)
+                    {
+                        <li>GameID: @game.GameId + Champion: @game.Champion</li>
+                    }
+                </ul>
+            }
         </div>
+        
     }
 </div>
 
