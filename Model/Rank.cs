@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Model
 {
     public class Rank
     {
+        [JsonProperty("rank")]
         public string Division { get; set; }
+        public string Tier { get; set; }
         public int LeaguePoints { get; set; } // LP
         public int Wins { get; set; }
         public int Losses { get; set; }

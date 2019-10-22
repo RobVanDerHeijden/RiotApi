@@ -755,6 +755,616 @@ namespace Data.Contexts.Memory
                 ChampionName = "Zyra"
             }
         };
+        private static readonly List<Map> _maps = new List<Map>()
+        {
+            new Map()
+            {
+                IdMap = 1,
+                Name = "Summoner's Rift",
+                Notes = "Original Summer variant"
+            },
+            new Map()
+            {
+                IdMap = 2,
+                Name = "Summoner's Rift",
+                Notes = "Original Autumn variant"
+            },new Map()
+            {
+                IdMap = 3,
+                Name = "The Proving Grounds",
+                Notes = "Tutorial Map"
+            },new Map()
+            {
+                IdMap = 4,
+                Name = "Twisted Treeline",
+                Notes = "Original Version"
+            },new Map()
+            {
+                IdMap = 8,
+                Name = "The Crystal Scar",
+                Notes = "Dominion map"
+            },new Map()
+            {
+                IdMap = 10,
+                Name = "Twisted Treeline",
+                Notes = "Last TT map"
+            },new Map()
+            {
+                IdMap = 11,
+                Name = "Summoner's Rift",
+                Notes = "Current Version"
+            },new Map()
+            {
+                IdMap = 12,
+                Name = "Howling Abyss",
+                Notes = "ARAM map"
+            },new Map()
+            {
+                IdMap = 14,
+                Name = "Butcher's Bridge",
+                Notes = "Alternate ARAM map"
+            },new Map()
+            {
+                IdMap = 16,
+                Name = "Cosmic Ruins",
+                Notes = "Dark Star: Singularity map"
+            },new Map()
+            {
+                IdMap = 18,
+                Name = "Valoran City Park",
+                Notes = "Star Guardian Invasion map"
+            },new Map()
+            {
+                IdMap = 19,
+                Name = "Substructure 43",
+                Notes = "PROJECT: Hunters map"
+            },new Map()
+            {
+                IdMap = 1,
+                Name = "Crash Site",
+                Notes = "Odyssey: Extraction map"
+            },new Map()
+            {
+                IdMap = 1,
+                Name = "Nexus Blitz",
+                Notes = "Nexus Blitz map"
+            },
+        };
+        private readonly List<QueueType> _queues = new List<QueueType>()
+        {
+            new QueueType()
+            {
+                IdQueue = 0,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Custom games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 2,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Blind Pick games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 430"
+            },
+            new QueueType()
+            {
+                IdQueue = 4,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Ranked Solo games",
+                Notes = "Deprecated in favor of queueId 420"
+            },
+            new QueueType()
+            {
+                IdQueue = 6,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Ranked Premade games",
+                Notes = "Game mode deprecated"
+            },
+            new QueueType()
+            {
+                IdQueue = 7,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Co-op vs AI games",
+                Notes = "Deprecated in favor of queueId 32 and 33"
+            },
+            new QueueType()
+            {
+                IdQueue = 8,
+                Map = _maps.First(item => item.IdMap == 10),
+                Description = "3v3 Normal games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 460"
+            },
+            new QueueType()
+            {
+                IdQueue = 9,
+                Map = _maps.First(item => item.IdMap == 10),
+                Description = "3v3 Ranked Flex games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 470"
+            },
+            new QueueType()
+            {
+                IdQueue = 14,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Draft Pick games",
+                Notes = "Deprecated in favor of queueId 400"
+            },
+            new QueueType()
+            {
+                IdQueue = 16,
+                Map = _maps.First(item => item.IdMap == 8),
+                Description = "5v5 Dominion Blind Pick games",
+                Notes = "Game mode deprecated"
+            },
+            new QueueType()
+            {
+                IdQueue = 17,
+                Map = _maps.First(item => item.IdMap == 8),
+                Description = "5v5 Dominion Draft Pick games",
+                Notes = "Game mode deprecated"
+            },
+            new QueueType()
+            {
+                IdQueue = 25,
+                Map = _maps.First(item => item.IdMap == 8),
+                Description = "Dominion Co-op vs AI games",
+                Notes = "Game mode deprecated"
+            },
+            new QueueType()
+            {
+                IdQueue = 31,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Co-op vs AI Intro Bot games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 830"
+            },
+            new QueueType()
+            {
+                IdQueue = 32,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Co-op vs AI Beginner Bot games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 840"
+            },
+            new QueueType()
+            {
+                IdQueue = 33,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Co-op vs AI Intermediate Bot games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 850"
+            },
+            new QueueType()
+            {
+                IdQueue = 41,
+                Map = _maps.First(item => item.IdMap == 10),
+                Description = "3v3 Ranked Team games",
+                Notes = "Game mode deprecated"
+            },
+            new QueueType()
+            {
+                IdQueue = 42,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Ranked Team games",
+                Notes = "Game mode deprecated"
+            },
+            new QueueType()
+            {
+                IdQueue = 52,
+                Map = _maps.First(item => item.IdMap == 10),
+                Description = "Co-op vs AI games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 800"
+            },
+            new QueueType()
+            {
+                IdQueue = 61,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Team Builder games",
+                Notes = "Game mode deprecated"
+            },
+            new QueueType()
+            {
+                IdQueue = 65,
+                Map = _maps.First(item => item.IdMap == 12),
+                Description = "5v5 ARAM games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 450"
+            },
+            new QueueType()
+            {
+                IdQueue = 67,
+                Map = _maps.First(item => item.IdMap == 12),
+                Description = "ARAM Co-op vs AI games",
+                Notes = "Game mode deprecated"
+            },
+            new QueueType()
+            {
+                IdQueue = 70,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "One for All games",
+                Notes = "Deprecated in patch 8.6 in favor of queueId 1020"
+            },
+            new QueueType()
+            {
+                IdQueue = 72,
+                Map = _maps.First(item => item.IdMap == 12),
+                Description = "1v1 Snowdown Showdown games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 73,
+                Map = _maps.First(item => item.IdMap == 12),
+                Description = "2v2 Snowdown Showdown games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 75,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "6v6 Hexakill games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 76,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Ultra Rapid Fire games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 78,
+                Map = _maps.First(item => item.IdMap == 12),
+                Description = "One For All: Mirror Mode games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 83,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Co-op vs AI Ultra Rapid Fire games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 91,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Doom Bots Rank 1 games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 950"
+            },
+            new QueueType()
+            {
+                IdQueue = 92,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Doom Bots Rank 2 games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 950"
+            },
+            new QueueType()
+            {
+                IdQueue = 93,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Doom Bots Rank 5 games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 950"
+            },
+            new QueueType()
+            {
+                IdQueue = 96,
+                Map = _maps.First(item => item.IdMap == 8),
+                Description = "Ascension games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 910"
+            },
+            new QueueType()
+            {
+                IdQueue = 98,
+                Map = _maps.First(item => item.IdMap == 10),
+                Description = "6v6 Hexakill games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 100,
+                Map = _maps.First(item => item.IdMap == 14),
+                Description = "5v5 ARAM games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 300,
+                Map = _maps.First(item => item.IdMap == 12),
+                Description = "Legend of the Poro King games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 920"
+            },
+            new QueueType()
+            {
+                IdQueue = 310,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Nemesis games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 313,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Black Market Brawlers games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 315,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Nexus Siege games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 940"
+            },
+            new QueueType()
+            {
+                IdQueue = 317,
+                Map = _maps.First(item => item.IdMap == 8),
+                Description = "Definitely Not Dominion games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 318,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "ARURF games",
+                Notes = "Deprecated in patch 7.19 in favor of queueId 900"
+            },
+            new QueueType()
+            {
+                IdQueue = 325,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "All Random games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 400,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Draft Pick games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 410,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Ranked Dynamic games",
+                Notes = "Game mode deprecated in patch 6.22"
+            },
+            new QueueType()
+            {
+                IdQueue = 420,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Ranked Solo games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 430,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Blind Pick games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 440,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "5v5 Ranked Flex games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 450,
+                Map = _maps.First(item => item.IdMap == 12),
+                Description = "5v5 ARAM games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 460,
+                Map = _maps.First(item => item.IdMap == 10),
+                Description = "3v3 Blind Pick games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 470,
+                Map = _maps.First(item => item.IdMap == 10),
+                Description = "3v3 Ranked Flex games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 600,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Blood Hunt Assassin games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 610,
+                Map = _maps.First(item => item.IdMap == 16),
+                Description = "Dark Star: Singularity games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 700,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Clash games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 800,
+                Map = _maps.First(item => item.IdMap == 10),
+                Description = "Co-op vs. AI Intermediate Bot games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 810,
+                Map = _maps.First(item => item.IdMap == 10),
+                Description = "Co-op vs. AI Intro Bot games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 820,
+                Map = _maps.First(item => item.IdMap == 10),
+                Description = "Co-op vs. AI Beginner Bot games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 830,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Co-op vs. AI Intro Bot games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 840,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Co-op vs. AI Beginner Bot games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 850,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Co-op vs. AI Intermediate Bot games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 900,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "URF games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 910,
+                Map = _maps.First(item => item.IdMap == 8),
+                Description = "Ascension games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 920,
+                Map = _maps.First(item => item.IdMap == 12),
+                Description = "Legend of the Poro King games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 940,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Nexus Siege games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 950,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Doom Bots Voting games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 960,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Doom Bots Standard games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 980,
+                Map = _maps.First(item => item.IdMap == 18),
+                Description = "Star Guardian Invasion: Normal games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 990,
+                Map = _maps.First(item => item.IdMap == 18),
+                Description = "Star Guardian Invasion: Onslaught games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1000,
+                Map = _maps.First(item => item.IdMap == 19), // Overcharge
+                Description = "PROJECT: Hunters games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1010,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "Snow ARURF games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1020,
+                Map = _maps.First(item => item.IdMap == 11),
+                Description = "One for All games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1030,
+                Map = _maps.First(item => item.IdMap == 20),
+                Description = "Odyssey Extraction: Intro games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1040,
+                Map = _maps.First(item => item.IdMap == 20),
+                Description = "Odyssey Extraction: Cadet games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1050,
+                Map = _maps.First(item => item.IdMap == 20),
+                Description = "Odyssey Extraction: Crewmember games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1060,
+                Map = _maps.First(item => item.IdMap == 20),
+                Description = "Odyssey Extraction: Captain games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1070,
+                Map = _maps.First(item => item.IdMap == 20),
+                Description = "Odyssey Extraction: Onslaught games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1090,
+                Map = _maps.First(item => item.IdMap == 11), // Convergence
+                Description = "Teamfight Tactics games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1100,
+                Map = _maps.First(item => item.IdMap == 11), // Convergence
+                Description = "Ranked Teamfight Tactics games",
+                Notes = ""
+            },
+            new QueueType()
+            {
+                IdQueue = 1200,
+                Map = _maps.First(item => item.IdMap == 21),
+                Description = "Nexus Blitz games",
+                Notes = "Deprecated in patch 9.2"
+            }
+        };
 
         private readonly string _APIFilePath = "API/APIKey.txt";
 
@@ -783,7 +1393,7 @@ namespace Data.Contexts.Memory
         {
             string path = "match/v4/matchlists/by-account/" + summonerIdAccount;
 
-            // TODO: Remove + "&endIndex=3". Only for testing small sample
+            // TODO: Remove + "&endIndex=3". Only for testing smaller sample
             HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path) + "&endIndex=3");
             string content = response.Content.ReadAsStringAsync().Result;
 
@@ -794,7 +1404,6 @@ namespace Data.Contexts.Memory
 
             return null;
         }
-
         public Champion GetChampionInfoFromId(int championId)
         {
             Champion champion = _champions.First(item => item.Key == championId);
