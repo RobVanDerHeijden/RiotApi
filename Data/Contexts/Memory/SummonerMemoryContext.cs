@@ -782,9 +782,9 @@ namespace Data.Contexts.Memory
         public SummonerPlayedGameList GetSummonerPlayedGames(string region, string summonerIdAccount)
         {
             string path = "match/v4/matchlists/by-account/" + summonerIdAccount;
-            
 
-            HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path));
+            // TODO: Remove + "&endIndex=3". Only for testing small sample
+            HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path) + "&endIndex=3");
             string content = response.Content.ReadAsStringAsync().Result;
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -795,9 +795,8 @@ namespace Data.Contexts.Memory
             return null;
         }
 
-        public Champion GetChampionInfoFromId(int championId) // TODO: fix this method
+        public Champion GetChampionInfoFromId(int championId)
         {
-            //Champion champion = _champions.Find(x => x.Key() == championId);
             Champion champion = _champions.First(item => item.Key == championId);
 
             if (champion == null)

@@ -35,3 +35,52 @@ body {
         display: none;
     }
 }
+
+/****** START CUSTOM CSS ROB ******/
+
+/* Summoner Info */
+.summoner {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+/* Profile Icon */
+.profile-icon {
+    display: inline-block;
+}
+
+.profile-icon-image {
+    width: 100px;
+    height: 100px;
+}
+/* Summoner info */
+.summoner-info {
+    display: inline-block;
+}
+.summoner-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* Match History */
+.played-games-history-list {
+
+}
+.played-game-wrap {
+    margin-bottom: 8px;
+}
+.played-game {
+    background-color: #a3cfec;
+    border-color: #99b9cf;
+}
+.played-game-champion-icon {
+    display: inline-block;
+}
+.played-game-champion-icon-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+.played-game-info {
+    display: inline-block;
+}

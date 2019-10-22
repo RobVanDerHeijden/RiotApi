@@ -30,25 +30,42 @@
             </div>
         </form>
     </div>
-    @if (TempData["SummonerLevel"] != null)
+    @if (TempData["SummonerName"] != null)
     {
         <div class="col-md-2">
         </div>
         
         <div class="col-md-4" style="border: 1px solid red">
-            <div style="float:left">
-                <img src="~/images/profileicon/@(TempData["ProfileIconId"]).png">
+            <div class="summoner">
+                <div class="profile-icon">
+                    <img src="~/images/profileicon/@(TempData["ProfileIconId"]).png" class="profile-icon-image">
+                </div>
+                <div class="summoner-info">
+                    <div class="summoner-name">@TempData["SummonerName"]</div>
+                    <div class="summoner-level">Level: @TempData["SummonerLevel"]</div>
+                </div>
             </div>
-            Summoner Level: @TempData["SummonerLevel"]
+            
             
             @if (ViewBag.PlayedGames != null)
             {
-                <ul>
+                <div class="played-games-history-list">
                     @foreach (var game in ViewBag.PlayedGames)
                     {
-                        <li>GameID: @game.GameId + ChampionID: @game.Champion + ChampionName: @game.ChampionReal.ChampionName</li>
+                        <div class="played-game-wrap">
+                            <div class="played-game">
+                                <div class="played-game-champion-icon">
+                                    <img src="~/images/champion/@(@game.ChampionReal.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @game.Champion">
+                                </div>
+                                <div class="played-game-info">
+                                    <div>GameID: @game.GameId</div>
+                                    <div>ChampionName: @game.ChampionReal.ChampionName</div>
+                                </div>
+                            </div>
+                        </div>
                     }
-                </ul>
+                </div>
+                
             }
         </div>
         
