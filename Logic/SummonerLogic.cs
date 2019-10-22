@@ -28,6 +28,11 @@ namespace Logic
         public SummonerPlayedGameList GetSummonerPlayedGames(string region, string summonerIdAccount)
         {
             SummonerPlayedGameList summonerPlayedGames = _iSummonerContext.GetSummonerPlayedGames(region, summonerIdAccount);
+            foreach (SummonerPlayedGame summonerPlayedGame in summonerPlayedGames.Matches)
+            {
+                
+                summonerPlayedGame.ChampionReal = _iSummonerContext.GetChampionInfoFromId(summonerPlayedGame.Champion);
+            }
             return summonerPlayedGames;
         }
     }

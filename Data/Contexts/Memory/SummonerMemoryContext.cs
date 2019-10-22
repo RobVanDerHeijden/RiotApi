@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using Data.Interfaces;
@@ -756,71 +757,6 @@ namespace Data.Contexts.Memory
         };
 
         private readonly string _APIFilePath = "API/APIKey.txt";
-        /* example players
-        private List<string> _regionsxx = new List<string>
-        {
-            new Region
-            {
-                PlayerId = 1,
-                Username = "UnitPLayer",
-                Password = "1234",
-                Role = "player",
-                PlayerLevel = 0,
-                Experience = 0,
-                SkillPoints = 5,
-                Money = 100,
-                Income = 1,
-                Energy = 100,
-                EnergyRegen = 5,
-                RefillableEnergy = 100,
-                LastTimeEnergyRefilled = DateTime.Now,
-                MaxEnergy = 100,
-                RealName = "Unit Player",
-                Country = "Netherlands",
-                City = "Eindhoven"
-            },
-            new Player
-            {
-                PlayerId = 2,
-                Username = "UnitPLayer2",
-                Password = "1234",
-                Role = "player",
-                PlayerLevel = 0,
-                Experience = 0,
-                SkillPoints = 5,
-                Money = 100,
-                Income = 1,
-                Energy = 100,
-                EnergyRegen = 5,
-                RefillableEnergy = 100,
-                LastTimeEnergyRefilled = DateTime.Now,
-                MaxEnergy = 100,
-                RealName = "Unit Player 2",
-                Country = "Netherlands",
-                City = "Eindhoven"
-            },
-            new Player
-            {
-                PlayerId = 3,
-                Username = "UnitPLayer3",
-                Password = "1234",
-                Role = "player",
-                PlayerLevel = 0,
-                Experience = 0,
-                SkillPoints = 5,
-                Money = 100,
-                Income = 1,
-                Energy = 100,
-                EnergyRegen = 5,
-                RefillableEnergy = 100,
-                LastTimeEnergyRefilled = DateTime.Now,
-                MaxEnergy = 100,
-                RealName = "Unit Player 3",
-                Country = "Netherlands",
-                City = "Eindhoven"
-            }
-        };
-        */
 
         public List<string> GetRegions()
         {
@@ -857,6 +793,19 @@ namespace Data.Contexts.Memory
             }
 
             return null;
+        }
+
+        public Champion GetChampionInfoFromId(int championId) // TODO: fix this method
+        {
+            //Champion champion = _champions.Find(x => x.Key() == championId);
+            Champion champion = _champions.First(item => item.Key == championId);
+
+            if (champion == null)
+            {
+                throw new Exception();
+            }
+                
+            return champion;
         }
 
 

@@ -20,10 +20,9 @@ namespace Model
         public int VisionScore { get; set; }
         public bool FirstBlood { get; set; }
         public bool IsBot { get; set; }
-        public int Season { get; set; }
         public Summoner Summoner { get; set; }
-        public PlayedGame PlayedGame { get; set; }
-        public long GameId { get; set; } // TODO: Replace this
+        public long GameId { get; set; } // TODO: change to: public PlayedGame PlayedGame { get; set; }
         public int Champion { get; set; } // TODO: Change to: public Champion Champion { get; set; }
+        public Champion ChampionReal { get; set; }
     }
 }

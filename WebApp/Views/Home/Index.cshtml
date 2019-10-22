@@ -46,7 +46,7 @@
                 <ul>
                     @foreach (var game in ViewBag.PlayedGames)
                     {
-                        <li>GameID: @game.GameId + Champion: @game.Champion</li>
+                        <li>GameID: @game.GameId + ChampionID: @game.Champion + ChampionName: @game.ChampionReal.ChampionName</li>
                     }
                 </ul>
             }
