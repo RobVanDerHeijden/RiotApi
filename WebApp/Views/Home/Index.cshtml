@@ -42,7 +42,6 @@
                 </div>
             </div>
             
-            
             @if (ViewBag.PlayedGames != null)
             {
                 <div class="played-games-history-list">
@@ -51,7 +50,7 @@
                         <div class="played-game-wrap">
                             <div class="played-game">
                                 <div class="played-game-champion-icon">
-                                    <img src="~/images/champion/@(@game.ChampionObject.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @game.Champion">
+                                    <img src="~/images/champion/@(@game.ChampionObject.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @game.Champion" alt="Champion">
                                 </div>
                                 <div class="played-game-info">
                                     <div>GameID: @game.GameId</div>
@@ -61,14 +60,13 @@
                         </div>
                     }
                 </div>
-                
             }
             @if (ViewBag.SummonerRanks != null)
             {
                 <div class="summoner-ranks">
                     @foreach (var rank in ViewBag.SummonerRanks)
                     {
-                    <span>@rank.QueueType</span>
+                        <span>@rank.QueueType</span>
                         switch (rank.QueueType)
                         {
                             case "RANKED_SOLO_5x5":
@@ -84,11 +82,15 @@
                                 <span>No Rank Found</span>
                                 break;
                         }
+                        <div class="rank-icon">
+                            <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
+                        </div>
                         
+
                         <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
                         <div>W :@rank.Wins L: @rank.Losses</div>
                     }
-                    
+
                 </div>
             }
         </div>
