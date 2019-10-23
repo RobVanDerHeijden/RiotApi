@@ -7,7 +7,7 @@ namespace Model
     public class SummonerPlayedGame
     {
         public int IdProfileIcon { get; set; }
-        public string GameResult { get; set; } // Win, Fail
+        public string GameResult { get; set; } // Values can be: Win, Fail TODO: find out what value is used for a remake
         public int ChampionLevel { get; set; }
         public int Team { get; set; }
         public int Kills { get; set; }
@@ -22,7 +22,7 @@ namespace Model
         public bool IsBot { get; set; }
         public Summoner Summoner { get; set; }
         public long GameId { get; set; } // TODO: change to: public PlayedGame PlayedGame { get; set; }
-        public int Champion { get; set; } // TODO: Change to: public Champion Champion { get; set; }
-        public Champion ChampionReal { get; set; }
+        public int Champion { get; set; } 
+        public Champion ChampionObject { get; set; }
     }
 }

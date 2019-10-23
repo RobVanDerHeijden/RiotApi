@@ -25,15 +25,21 @@ namespace Logic
             return summoner;
         }
         
-        public SummonerPlayedGameList GetSummonerPlayedGames(string region, string summonerIdAccount)
+        public SummonerPlayedGamesList GetSummonerPlayedGames(string region, string summonerIdAccount)
         {
-            SummonerPlayedGameList summonerPlayedGames = _iSummonerContext.GetSummonerPlayedGames(region, summonerIdAccount);
+            SummonerPlayedGamesList summonerPlayedGames = _iSummonerContext.GetSummonerPlayedGames(region, summonerIdAccount);
             foreach (SummonerPlayedGame summonerPlayedGame in summonerPlayedGames.Matches)
             {
-                
-                summonerPlayedGame.ChampionReal = _iSummonerContext.GetChampionInfoFromId(summonerPlayedGame.Champion);
+                summonerPlayedGame.ChampionObject = _iSummonerContext.GetChampionInfoFromId(summonerPlayedGame.Champion);
             }
             return summonerPlayedGames;
+        }
+
+        public List<Rank> GetSummonerRanks(string region, string encryptedSummonerId)
+        {
+            List<Rank> summonerRanks = _iSummonerContext.GetSummonerRanks(region, encryptedSummonerId);
+            // TODO: foreach rank getleaguename with leagueId
+            return summonerRanks;
         }
     }
 }

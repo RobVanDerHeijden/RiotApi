@@ -15,7 +15,8 @@ namespace Model
         public int Losses { get; set; }
         public Summoner Summoner { get; set; }
         public League League { get; set; }
-        public QueueType QueueType { get; set; }
+        public string QueueType { get; set; }
+        public QueueType QueueTypeObject { get; set; }
 
     }
 }

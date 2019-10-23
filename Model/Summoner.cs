@@ -7,8 +7,8 @@ namespace Model
 {
     public class Summoner
     {
-        [JsonProperty("id")]
-        public string SummonerId { get; set; }
+        [JsonProperty("id")] // encryptedSummonerId
+        public string EncryptedSummonerId { get; set; }
         [JsonProperty("accountId")]
         public string AccountId { get; set; }
         [JsonProperty("name")]
@@ -24,6 +24,8 @@ namespace Model
         public Tag ChampTagStyle { get; set; }
         public List<PlayedGame> Games { get; set; }
         public LiveGame LiveGame { get; set; }
+
+        // TODO: seriously consider adding region to Summoner, could make api cals easier, since a summoner is always linked to ONE region
 
     }
 }

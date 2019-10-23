@@ -21,10 +21,6 @@
             <div class="form-group">
                 @Html.DropDownListFor(model => model.Region, new SelectList(ViewBag.RegionList))
             </div>
-            @*<span>@((ViewBag.RegionList as Dictionary<string, string>).Count)</span>*@
-            
-            
-
             <div class="form-group">
                 <input type="submit" value="Lookup" class="btn btn-default" />
             </div>
@@ -55,17 +51,45 @@
                         <div class="played-game-wrap">
                             <div class="played-game">
                                 <div class="played-game-champion-icon">
-                                    <img src="~/images/champion/@(@game.ChampionReal.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @game.Champion">
+                                    <img src="~/images/champion/@(@game.ChampionObject.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @game.Champion">
                                 </div>
                                 <div class="played-game-info">
                                     <div>GameID: @game.GameId</div>
-                                    <div>ChampionName: @game.ChampionReal.ChampionName</div>
+                                    <div>ChampionName: @game.ChampionObject.ChampionName</div>
                                 </div>
                             </div>
                         </div>
                     }
                 </div>
                 
+            }
+            @if (ViewBag.SummonerRanks != null)
+            {
+                <div class="summoner-ranks">
+                    @foreach (var rank in ViewBag.SummonerRanks)
+                    {
+                    <span>@rank.QueueType</span>
+                        switch (rank.QueueType)
+                        {
+                            case "RANKED_SOLO_5x5":
+                                <span>SoloQ</span>
+                                break;
+                            case "RANKED_FLEX_SR":
+                                <span>Flex</span>
+                                break;
+                            case "RANKED_TFT":
+                                <span>TFT</span>
+                                break;
+                            default:
+                                <span>No Rank Found</span>
+                                break;
+                        }
+                        
+                        <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                        <div>W :@rank.Wins L: @rank.Losses</div>
+                    }
+                    
+                </div>
             }
         </div>
         

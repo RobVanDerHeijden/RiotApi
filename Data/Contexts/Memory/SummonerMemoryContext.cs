@@ -820,17 +820,17 @@ namespace Data.Contexts.Memory
                 Notes = "PROJECT: Hunters map"
             },new Map()
             {
-                IdMap = 1,
+                IdMap = 20,
                 Name = "Crash Site",
                 Notes = "Odyssey: Extraction map"
             },new Map()
             {
-                IdMap = 1,
+                IdMap = 21,
                 Name = "Nexus Blitz",
                 Notes = "Nexus Blitz map"
             },
         };
-        private readonly List<QueueType> _queues = new List<QueueType>()
+        private readonly List<QueueType> _queueTypes = new List<QueueType>()
         {
             new QueueType()
             {
@@ -1389,7 +1389,7 @@ namespace Data.Contexts.Memory
             return null;
         }
 
-        public SummonerPlayedGameList GetSummonerPlayedGames(string region, string summonerIdAccount)
+        public SummonerPlayedGamesList GetSummonerPlayedGames(string region, string summonerIdAccount)
         {
             string path = "match/v4/matchlists/by-account/" + summonerIdAccount;
 
@@ -1399,7 +1399,7 @@ namespace Data.Contexts.Memory
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                return JsonConvert.DeserializeObject<SummonerPlayedGameList>(content);
+                return JsonConvert.DeserializeObject<SummonerPlayedGamesList>(content);
             }
 
             return null;
@@ -1414,6 +1414,21 @@ namespace Data.Contexts.Memory
             }
                 
             return champion;
+        }
+        // TODO: MAke this method so it retreives ranks
+        public List<Rank> GetSummonerRanks(string region, string encryptedSummonerId)
+        {
+            string path = "league/v4/entries/by-summoner/" + encryptedSummonerId;
+
+            HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path));
+            string content = response.Content.ReadAsStringAsync().Result;
+            
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return JsonConvert.DeserializeObject<List<Rank>>(content);
+            }
+
+            return null;
         }
 
 
