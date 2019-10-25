@@ -47,18 +47,29 @@ body {
 .profile-icon {
     display: inline-block;
 }
-
 .profile-icon-image {
     width: 100px;
     height: 100px;
 }
-/* Summoner info */
+/* Summoner Info */
 .summoner-info {
     display: inline-block;
 }
 .summoner-name {
     font-size: 20px;
     font-weight: bold;
+}
+/* Sumoner Rank */
+.summoner-ranks {
+
+}
+.rank-icon {
+    display: inline-block;
+}
+
+.rank-icon-image {
+    width: 100px;
+    height: 100px;
 }
 
 

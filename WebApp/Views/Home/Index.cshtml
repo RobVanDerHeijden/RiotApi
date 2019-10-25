@@ -30,7 +30,7 @@
     {
         <div class="col-md-2">
         </div>
-        
+
         <div class="col-md-4" style="border: 1px solid red">
             <div class="summoner">
                 <div class="profile-icon">
@@ -41,7 +41,89 @@
                     <div class="summoner-level">Level: @TempData["SummonerLevel"]</div>
                 </div>
             </div>
-            
+            @if (ViewBag.SummonerRanks != null)
+            {
+                <div class="summoner-ranks">
+                    <div class="rank-types-buttons">
+                        @foreach (var rank in ViewBag.SummonerRanks)
+                        {
+                            switch (rank.QueueType)
+                            {
+                                case "RANKED_SOLO_5x5":
+                                    <button onclick="openCity('Solo-5x5')">Solo 5x5</button>
+                                    break;
+                                case "RANKED_FLEX_SR":
+                                    <button onclick="openCity('Flex-5x5')">Flex 5x5</button>
+                                    break;
+                                case "RANKED_FLEX_TT":
+                                    <button onclick="openCity('Flex-3x3')">Flex 3x3</button>
+                                    break;
+                                case "RANKED_TFT":
+                                    <button onclick="openCity('TFT')">TFT</button>
+                                    break;
+                                default:
+                                    <span>No Rank Found</span>
+                                    break;
+                            }
+                        }
+                    </div>
+                    <div class="rank-tabs">
+                        @foreach (var rank in ViewBag.SummonerRanks)
+                        {
+                            switch (rank.QueueType)
+                            {
+                                case "RANKED_SOLO_5x5":
+                                    <div id="Solo-5x5" class="rank-tab">
+                                        <div class="rank-icon">
+                                            <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
+                                        </div>
+                                        <h2>Solo 5x5</h2>
+                                        <p>-</p>
+                                        <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                        <div>W :@rank.Wins L: @rank.Losses</div>
+                                    </div>
+                                    break;
+                                case "RANKED_FLEX_SR":
+                                    <div id="Flex-5x5" class="rank-tab" style="display: none">
+                                        <div class="rank-icon">
+                                            <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
+                                        </div>
+                                        <h2>Flex 5x5</h2>
+                                        <p>-</p>
+                                        <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                        <div>W :@rank.Wins L: @rank.Losses</div>
+                                    </div>
+                                    break;
+                                case "RANKED_FLEX_TT":
+                                    <div id="Flex-3x3" class="rank-tab" style="display: none">
+                                        <div class="rank-icon">
+                                            <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
+                                        </div>
+                                        <h2>Flex 3x3</h2>
+                                        <p>-</p>
+                                        <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                        <div>W :@rank.Wins L: @rank.Losses</div>
+                                    </div>
+                                    break;
+                                case "RANKED_TFT":
+                                    <div id="TFT" class="rank-tab" style="display: none">
+                                        <div class="rank-icon">
+                                            <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
+                                        </div>
+                                        <h2>TFT</h2>
+                                        <p>-</p>
+                                        <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                        <div>W :@rank.Wins L: @rank.Losses</div>
+                                    </div>
+                                    break;
+                                default:
+                                    <span>No Rank Found</span>
+                                    break;
+                            }
+                        }
+                    </div>
+                </div>
+            }
             @if (ViewBag.PlayedGames != null)
             {
                 <div class="played-games-history-list">
@@ -61,46 +143,10 @@
                     }
                 </div>
             }
-            @if (ViewBag.SummonerRanks != null)
-            {
-                <div class="summoner-ranks">
-                    @foreach (var rank in ViewBag.SummonerRanks)
-                    {
-                        <span>@rank.QueueType</span>
-                        switch (rank.QueueType)
-                        {
-                            case "RANKED_SOLO_5x5":
-                                <span>SoloQ</span>
-                                break;
-                            case "RANKED_FLEX_SR":
-                                <span>Flex</span>
-                                break;
-                            case "RANKED_TFT":
-                                <span>TFT</span>
-                                break;
-                            default:
-                                <span>No Rank Found</span>
-                                break;
-                        }
-                        <div class="rank-icon">
-                            <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
-                        </div>
-                        
-                        <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
-                        <div>W :@rank.Wins L: @rank.Losses</div>
-                    }
 
-                </div>
-            }
         </div>
-        
     }
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
