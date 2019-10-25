@@ -28,10 +28,8 @@
     </div>
     @if (TempData["SummonerName"] != null)
     {
-        <div class="col-md-2">
-        </div>
 
-        <div class="col-md-4" style="border: 1px solid red">
+        <div class="col-md-8" style="border: 1px solid red">
             <div class="summoner">
                 <div class="profile-icon">
                     <img src="~/images/profileicon/@(TempData["ProfileIconId"]).png" class="profile-icon-image">
@@ -44,22 +42,23 @@
             @if (ViewBag.SummonerRanks != null)
             {
                 <div class="summoner-ranks">
-                    <div class="rank-types-buttons">
+                    <div class="rank-tabs-buttons">
                         @foreach (var rank in ViewBag.SummonerRanks)
                         {
                             switch (rank.QueueType)
                             {
+                                // TODO: Order these by order set underneath
                                 case "RANKED_SOLO_5x5":
-                                    <button onclick="openCity('Solo-5x5')">Solo 5x5</button>
+                                    <button onclick="openRank('Solo-5x5')">Solo 5x5</button>
                                     break;
                                 case "RANKED_FLEX_SR":
-                                    <button onclick="openCity('Flex-5x5')">Flex 5x5</button>
+                                    <button onclick="openRank('Flex-5x5')">Flex 5x5</button>
                                     break;
                                 case "RANKED_FLEX_TT":
-                                    <button onclick="openCity('Flex-3x3')">Flex 3x3</button>
+                                    <button onclick="openRank('Flex-3x3')">Flex 3x3</button>
                                     break;
                                 case "RANKED_TFT":
-                                    <button onclick="openCity('TFT')">TFT</button>
+                                    <button onclick="openRank('TFT')">TFT</button>
                                     break;
                                 default:
                                     <span>No Rank Found</span>
@@ -77,10 +76,11 @@
                                         <div class="rank-icon">
                                             <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
                                         </div>
-                                        <h2>Solo 5x5</h2>
-                                        <p>-</p>
-                                        <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
-                                        <div>W :@rank.Wins L: @rank.Losses</div>
+                                        <div class="rank-info">
+                                            <h2>Solo 5x5</h2>
+                                            <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                            <div>W :@rank.Wins L: @rank.Losses</div>
+                                        </div>
                                     </div>
                                     break;
                                 case "RANKED_FLEX_SR":
@@ -88,10 +88,11 @@
                                         <div class="rank-icon">
                                             <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
                                         </div>
-                                        <h2>Flex 5x5</h2>
-                                        <p>-</p>
-                                        <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
-                                        <div>W :@rank.Wins L: @rank.Losses</div>
+                                        <div class="rank-info">
+                                            <h2>Flex 5x5</h2>
+                                            <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                            <div>W :@rank.Wins L: @rank.Losses</div>
+                                        </div>
                                     </div>
                                     break;
                                 case "RANKED_FLEX_TT":
@@ -99,10 +100,11 @@
                                         <div class="rank-icon">
                                             <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
                                         </div>
-                                        <h2>Flex 3x3</h2>
-                                        <p>-</p>
-                                        <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
-                                        <div>W :@rank.Wins L: @rank.Losses</div>
+                                        <div class="rank-info">
+                                            <h2>Flex 3x3</h2>
+                                            <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                            <div>W :@rank.Wins L: @rank.Losses</div>
+                                        </div>
                                     </div>
                                     break;
                                 case "RANKED_TFT":
@@ -110,10 +112,11 @@
                                         <div class="rank-icon">
                                             <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
                                         </div>
-                                        <h2>TFT</h2>
-                                        <p>-</p>
-                                        <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
-                                        <div>W :@rank.Wins L: @rank.Losses</div>
+                                        <div class="rank-info">
+                                            <h2>TFT</h2>
+                                            <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                            <div>W :@rank.Wins L: @rank.Losses</div>
+                                        </div>
                                     </div>
                                     break;
                                 default:

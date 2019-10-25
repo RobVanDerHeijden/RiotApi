@@ -1419,7 +1419,7 @@ namespace Data.Contexts.Memory
         public List<Rank> GetSummonerRanks(string region, string encryptedSummonerId)
         {
             string path = "league/v4/entries/by-summoner/" + encryptedSummonerId;
-
+            
             HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path));
             string content = response.Content.ReadAsStringAsync().Result;
             

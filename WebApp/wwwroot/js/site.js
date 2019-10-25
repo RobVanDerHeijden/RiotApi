@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 
-    function openCity(rankType) {
+    function openRank(rankType) {
         var i;
         var x = document.getElementsByClassName("rank-tab");
         for (i = 0; i < x.length; i++) {

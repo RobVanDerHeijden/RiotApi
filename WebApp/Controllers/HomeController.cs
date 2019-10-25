@@ -29,6 +29,7 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(ViewModelMain summonerViewModel)
         {
+            // API CALL #1
             Summoner summoner = _summonerLogic.GetSummonerByName(summonerViewModel.Region, summonerViewModel.SummonerName);
             if (summoner == null)
             {
@@ -41,14 +42,24 @@ namespace WebApp.Controllers
                 TempData["SummonerLevel"] = summoner.SummonerLevel;
                 TempData["ProfileIconId"] = summoner.ProfileIconId;
                 TempData["RevisionDate"] = summoner.RevisionDateLong;
+                // API CALL #2
+                SummonerPlayedGamesList summonerPlayedGames = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner.AccountId);
+                ViewBag.PlayedGames = summonerPlayedGames.Matches;
 
-                SummonerPlayedGamesList summonerPlayedGameses = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner.AccountId);
-                ViewBag.PlayedGames = summonerPlayedGameses.Matches;
-                
+                // API CALL tbd
+                // TODO: get the info from each match, like if you won, sumspells, items, etc...
+
+                // API CALL #3
                 List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(summonerViewModel.Region, summoner.EncryptedSummonerId);
                 ViewBag.SummonerRanks = summonerRanks;
+
+                // API CALL tbd
+                // TODO: get the leaguename from each rank
+
+                // API CALLSSS tbd
+                // TODO: get the summoner-champions + mastery(MASTERY IS SEPERATE CALL) + winrate and KDA (FIGURE OUT HOW I WANT TO CALCULATE THIS)
             }
-            
+
             List<string> regions = _summonerLogic.GetRegions();
             ViewBag.RegionList = regions;
 

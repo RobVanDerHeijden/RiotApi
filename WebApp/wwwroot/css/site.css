@@ -61,21 +61,24 @@ body {
 }
 /* Sumoner Rank */
 .summoner-ranks {
-
+    margin-bottom: 20px;
 }
 .rank-icon {
     display: inline-block;
 }
-
 .rank-icon-image {
     width: 100px;
     height: 100px;
+    vertical-align: baseline;
+}
+.rank-info {
+    display: inline-block;
 }
 
 
 /* Match History */
 .played-games-history-list {
-
+    margin-bottom: 20px;
 }
 .played-game-wrap {
     margin-bottom: 8px;
