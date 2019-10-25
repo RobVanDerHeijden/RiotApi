@@ -5,6 +5,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="API\ExampleJson\exampleChampionFullAatrox.json" />
+    <Content Remove="API\ExampleJson\exampleChampionMasteryDTO.json" />
+    <Content Remove="API\ExampleJson\exampleEuwDiamond1.json" />
+    <Content Remove="API\ExampleJson\exampleItems.json" />
+    <Content Remove="API\ExampleJson\exampleLiveMatch.json" />
+    <Content Remove="API\ExampleJson\exampleMatchDTO.json" />
+    <Content Remove="API\ExampleJson\exampleMatchlistDTO.json" />
+    <Content Remove="API\ExampleJson\exampleMatchTimelineDTO.json" />
+    <Content Remove="API\ExampleJson\exampleRunesReforged.json" />
+    <Content Remove="API\ExampleJson\exampleSummonerDTO.json" />
+    <Content Remove="API\ExampleJson\exampleSummonerSpells.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="API\ExampleJson\exampleEuwDiamond1.json" />
+    <None Include="API\ExampleJson\exampleChampionFullAatrox.json" />
+    <None Include="API\ExampleJson\exampleChampionMasteryDTO.json" />
+    <None Include="API\ExampleJson\exampleItems.json" />
+    <None Include="API\ExampleJson\exampleLiveMatch.json" />
+    <None Include="API\ExampleJson\exampleMatchDTO.json" />
+    <None Include="API\ExampleJson\exampleMatchlistDTO.json" />
+    <None Include="API\ExampleJson\exampleMatchTimelineDTO.json" />
+    <None Include="API\ExampleJson\exampleRunesReforged.json" />
+    <None Include="API\ExampleJson\exampleSummonerDTO.json" />
+    <None Include="API\ExampleJson\exampleSummonerSpells.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
@@ -13,7 +41,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Logic\Logic.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
-    <ProjectReference Include="..\RiotApi\RiotApi.csproj" />
   </ItemGroup>
 
 </Project>

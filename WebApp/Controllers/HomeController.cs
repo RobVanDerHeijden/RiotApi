@@ -29,20 +29,26 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(ViewModelMain summonerViewModel)
         {
-            // TODO: Add if summoner is null, test by using incorrect API key
             Summoner summoner = _summonerLogic.GetSummonerByName(summonerViewModel.Region, summonerViewModel.SummonerName);
+            if (summoner == null)
+            {
+                TempData["SummonerName"] = "SUMMONER NOT FOUND";
+            }
+            else
+            {
+                // TODO: move tempdata to viewback with object, clarity and easier
+                TempData["SummonerName"] = summoner.Name;
+                TempData["SummonerLevel"] = summoner.SummonerLevel;
+                TempData["ProfileIconId"] = summoner.ProfileIconId;
+                TempData["RevisionDate"] = summoner.RevisionDateLong;
 
-            TempData["SummonerName"] = summoner.Name;
-            TempData["SummonerLevel"] = summoner.SummonerLevel;
-            TempData["ProfileIconId"] = summoner.ProfileIconId;
-            TempData["RevisionDate"] = summoner.RevisionDateLong;
-            SummonerPlayedGamesList summonerPlayedGameses = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner.AccountId);
-            ViewBag.PlayedGames = summonerPlayedGameses.Matches;
-
-            // TODO: Rank(s) from summoner
-            List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(summonerViewModel.Region, summoner.EncryptedSummonerId);
-            ViewBag.SummonerRanks = summonerRanks;
-
+                SummonerPlayedGamesList summonerPlayedGameses = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner.AccountId);
+                ViewBag.PlayedGames = summonerPlayedGameses.Matches;
+                
+                List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(summonerViewModel.Region, summoner.EncryptedSummonerId);
+                ViewBag.SummonerRanks = summonerRanks;
+            }
+            
             List<string> regions = _summonerLogic.GetRegions();
             ViewBag.RegionList = regions;
 

@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiotApi", "RiotApi\RiotApi.csproj", "{19ECB6AF-963A-4A05-A1E3-4838428204FE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{3A560751-99B8-4EF3-991F-198CAA70DB10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{872A4601-01BD-4BA8-9867-A1E110D6B645}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{872A4601-01BD-4BA8-9867-A1E110D6B645}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{53F7D6E4-0014-4C23-9E5C-5EC42F471463}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{53F7D6E4-0014-4C23-9E5C-5EC42F471463}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{D67DADBC-EB18-441B-A16C-CB20A78C577D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{D67DADBC-EB18-441B-A16C-CB20A78C577D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRiotApi", "TestRiotApi\TestRiotApi.csproj", "{7B927E18-2D4C-41FD-999C-C297DAB1970B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRiotApi", "TestRiotApi\TestRiotApi.csproj", "{7B927E18-2D4C-41FD-999C-C297DAB1970B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{19ECB6AF-963A-4A05-A1E3-4838428204FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19ECB6AF-963A-4A05-A1E3-4838428204FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19ECB6AF-963A-4A05-A1E3-4838428204FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19ECB6AF-963A-4A05-A1E3-4838428204FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A560751-99B8-4EF3-991F-198CAA70DB10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A560751-99B8-4EF3-991F-198CAA70DB10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A560751-99B8-4EF3-991F-198CAA70DB10}.Release|Any CPU.ActiveCfg = Release|Any CPU
