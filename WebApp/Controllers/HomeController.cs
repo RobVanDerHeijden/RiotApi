@@ -45,14 +45,12 @@ namespace WebApp.Controllers
                 // API CALL #2
                 SummonerPlayedGamesList summonerPlayedGames = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner.AccountId);
                 ViewBag.PlayedGames = summonerPlayedGames.Matches;
-
                 // API CALL tbd
                 // TODO: get the info from each match, like if you won, sumspells, items, etc...
 
                 // API CALL #3
                 List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(summonerViewModel.Region, summoner.EncryptedSummonerId);
                 ViewBag.SummonerRanks = summonerRanks;
-
                 // API CALL tbd
                 // TODO: get the leaguename from each rank
 

@@ -31,6 +31,11 @@ namespace Logic
             foreach (SummonerPlayedGame summonerPlayedGame in summonerPlayedGames.Matches)
             {
                 summonerPlayedGame.ChampionObject = _iSummonerContext.GetChampionInfoFromId(summonerPlayedGame.Champion);
+                summonerPlayedGame.GameIdObject = _iSummonerContext.GetPlayedGameInfoFromId(region, summonerPlayedGame.GameId);
+                // TODO: Fix so you don't get a Position in games like ARAM
+                summonerPlayedGame.Position = _iSummonerContext.GetPositionFromRoleAndLane(summonerPlayedGame.Role, summonerPlayedGame.Lane);
+
+
             }
             return summonerPlayedGames;
         }

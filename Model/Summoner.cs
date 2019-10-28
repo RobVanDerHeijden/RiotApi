@@ -20,7 +20,7 @@ namespace Model
         public string HighestPreviousRank { get; set; }
         [JsonProperty("revisionDate")]
         public long RevisionDateLong { get; set; } // comes in as long, TODO: convert with epoch to Datetime
-        public Lane PreferedPosition { get; set; }
+        public Position PreferedPosition { get; set; }
         public Tag ChampTagStyle { get; set; }
         public List<PlayedGame> Games { get; set; }
         public LiveGame LiveGame { get; set; }

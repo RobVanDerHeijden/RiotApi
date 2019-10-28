@@ -1365,6 +1365,47 @@ namespace Data.Contexts.Memory
                 Notes = "Deprecated in patch 9.2"
             }
         };
+        private readonly List<Position> _positions = new List<Position>()
+        {
+            /*  Role:   SOLO    NONE    SOLO      DUO_CARRY   DUO_SUPPORT
+             *  Lane:   TOP     JUNGLE  MIDDLE    BOTTOM      BOTTOM
+             */
+            new Position()
+            {
+                Name = "NONE",
+            },
+            new Position()
+            {
+                Name = "Top",
+                Role = "SOLO",
+                Lane = "TOP"
+            },
+            new Position()
+            {
+                Name = "Jungle",
+                Role = "NONE",
+                Lane = "JUNGLE"
+            },
+            new Position()
+            {
+                Name = "Mid",
+                Role = "SOLO",
+                Lane = "MIDDLE"
+            },
+            new Position()
+            {
+                Name = "Bottom",
+                Role = "DUO_CARRY",
+                Lane = "BOTTOM"
+            },
+            new Position()
+            {
+                Name = "Support",
+                Role = "DUO_SUPPORT",
+                Lane = "BOTTOM"
+            }
+
+        };
 
         private readonly string _APIFilePath = "API/APIKey.txt";
 
@@ -1393,8 +1434,8 @@ namespace Data.Contexts.Memory
         {
             string path = "match/v4/matchlists/by-account/" + summonerIdAccount;
 
-            // TODO: Remove + "&endIndex=3". Only for testing smaller sample
-            HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path) + "&endIndex=3");
+            // TODO: Remove + "&endIndex=5". Only for testing smaller sample
+            HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path) + "&endIndex=10");
             string content = response.Content.ReadAsStringAsync().Result;
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -1415,7 +1456,25 @@ namespace Data.Contexts.Memory
                 
             return champion;
         }
-        // TODO: MAke this method so it retreives ranks
+        public PlayedGame GetPlayedGameInfoFromId(string region, long gameId)
+        {
+            string path = "match/v4/matches/" + gameId;
+
+            HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path));
+            string content = response.Content.ReadAsStringAsync().Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return JsonConvert.DeserializeObject<PlayedGame>(content);
+            }
+
+            return null;
+        }
+        
+        public Position GetPositionFromRoleAndLane(string role, string lane)
+        {
+            return _positions.Find(p => p.Role == role && p.Lane == lane);
+        }
         public List<Rank> GetSummonerRanks(string region, string encryptedSummonerId)
         {
             string path = "league/v4/entries/by-summoner/" + encryptedSummonerId;
@@ -1430,6 +1489,8 @@ namespace Data.Contexts.Memory
 
             return null;
         }
+
+        
 
 
         protected HttpResponseMessage GetHttpResponse(string URL)

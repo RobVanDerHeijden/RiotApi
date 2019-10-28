@@ -21,8 +21,12 @@ namespace Model
         public bool FirstBlood { get; set; }
         public bool IsBot { get; set; }
         public Summoner Summoner { get; set; }
-        public long GameId { get; set; } // TODO: change to: public PlayedGame PlayedGame { get; set; }
+        public long GameId { get; set; } 
+        public PlayedGame GameIdObject { get; set; }
         public int Champion { get; set; } 
         public Champion ChampionObject { get; set; }
+        public string Role { get; set; }
+        public string Lane { get; set; }
+        public Position Position { get; set; }
     }
 }

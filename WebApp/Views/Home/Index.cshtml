@@ -140,6 +140,11 @@
                                 <div class="played-game-info">
                                     <div>GameID: @game.GameId</div>
                                     <div>ChampionName: @game.ChampionObject.ChampionName</div>
+                                    @if (game.Position != null)
+                                    {
+                                        <div>Position: @game.Position.Name</div>
+                                    }
+
                                 </div>
                             </div>
                         </div>
