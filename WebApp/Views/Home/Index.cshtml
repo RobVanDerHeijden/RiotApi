@@ -144,7 +144,41 @@
                                     {
                                         <div>Position: @game.Position.Name</div>
                                     }
+                                    <div>QueueType: @game.GameObject.QueueType.Description</div>
+                                    <div>TimeStamp: @game.GameObject.Timestamp</div>
+                                    <div>DateTime:  @game.GameObject.DateCreated.ToString("dd-MM-yyyy HH:mm:ss")</div>
+                                    <div>
+                                        Time since:
+                                        @{
+                                            TimeSpan timeSince = DateTime.Now.Subtract(game.GameObject.DateCreated);
+                                            double timeSinceInDays = (Math.Floor(timeSince.TotalDays));
+                                            double timeSinceInHours = (Math.Floor(timeSince.TotalHours));
+                                        }
+                                        @switch (timeSinceInDays)
+                                        {
+                                            case 0:
 
+                                                switch (timeSinceInHours)
+                                                {
+                                                    case 0:
+                                                        @Math.Floor(timeSince.TotalMinutes) @: Minutes ago
+                                                        break;
+                                                    case 1:
+                                                        @:1 Hour ago
+                                                        break;
+                                                    default:
+                                                        @timeSinceInHours @: Hours ago
+                                                        break;
+                                                }
+                                                break; // TODO: check: Will it ever reach this break?
+                                            case 1:
+                                                @:1 day ago
+                                                break;
+                                            default:
+                                                @timeSinceInDays @: Days ago
+                                                break;
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>

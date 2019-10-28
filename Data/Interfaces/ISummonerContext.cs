@@ -17,9 +17,11 @@ namespace Data.Interfaces
         Champion GetChampionInfoFromId(int championId);
         PlayedGame GetPlayedGameInfoFromId(string region, long gameId);
         Position GetPositionFromRoleAndLane(string role, string lane);
+        QueueType GetQueueTypeInfoFromId(int queueTypeId);
 
         // Get Ranks
         List<Rank> GetSummonerRanks(string region, string encryptedSummonerId);
+
         
     }
 }

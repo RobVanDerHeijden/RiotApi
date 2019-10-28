@@ -1475,6 +1475,12 @@ namespace Data.Contexts.Memory
         {
             return _positions.Find(p => p.Role == role && p.Lane == lane);
         }
+
+        public QueueType GetQueueTypeInfoFromId(int queueTypeId)
+        {
+            return _queueTypes.Find(q => q.IdQueue == queueTypeId);
+        }
+
         public List<Rank> GetSummonerRanks(string region, string encryptedSummonerId)
         {
             string path = "league/v4/entries/by-summoner/" + encryptedSummonerId;

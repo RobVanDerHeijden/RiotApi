@@ -42,11 +42,9 @@ namespace WebApp.Controllers
                 TempData["SummonerLevel"] = summoner.SummonerLevel;
                 TempData["ProfileIconId"] = summoner.ProfileIconId;
                 TempData["RevisionDate"] = summoner.RevisionDateLong;
-                // API CALL #2
+                // API CALL #2 + 1 Per Match
                 SummonerPlayedGamesList summonerPlayedGames = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner.AccountId);
                 ViewBag.PlayedGames = summonerPlayedGames.Matches;
-                // API CALL tbd
-                // TODO: get the info from each match, like if you won, sumspells, items, etc...
 
                 // API CALL #3
                 List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(summonerViewModel.Region, summoner.EncryptedSummonerId);
