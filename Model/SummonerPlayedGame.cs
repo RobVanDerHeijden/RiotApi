@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Model
 {
@@ -23,7 +24,8 @@ namespace Model
         public Summoner Summoner { get; set; }
         public long GameId { get; set; } 
         public PlayedGame GameObject { get; set; }
-        public int Champion { get; set; } 
+        [JsonProperty("champion")]
+        public int ChampionId { get; set; } 
         public Champion ChampionObject { get; set; }
         public string Role { get; set; }
         public string Lane { get; set; }

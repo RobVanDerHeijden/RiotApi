@@ -832,6 +832,7 @@ namespace Data.Contexts.Memory
         };
         private readonly List<QueueType> _queueTypes = new List<QueueType>()
         {
+            // TODO: Add DisplayNames for the Queues in use
             new QueueType()
             {
                 IdQueue = 0,
@@ -1131,7 +1132,9 @@ namespace Data.Contexts.Memory
                 IdQueue = 420,
                 Map = _maps.First(item => item.IdMap == 11),
                 Description = "5v5 Ranked Solo games",
-                Notes = ""
+                Notes = "",
+                DisplayName = "Ranked Solo 5v5"
+
             },
             new QueueType()
             {
@@ -1470,7 +1473,6 @@ namespace Data.Contexts.Memory
 
             return null;
         }
-        
         public Position GetPositionFromRoleAndLane(string role, string lane)
         {
             return _positions.Find(p => p.Role == role && p.Lane == lane);

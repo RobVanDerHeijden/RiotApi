@@ -79,7 +79,7 @@
                                         <div class="rank-info">
                                             <h2>Solo 5x5</h2>
                                             <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
-                                            <div>W :@rank.Wins L: @rank.Losses</div>
+                                            <div>W:@rank.Wins L:@rank.Losses</div>
                                         </div>
                                     </div>
                                     break;
@@ -134,20 +134,16 @@
                     {
                         <div class="played-game-wrap">
                             <div class="played-game">
-                                <div class="played-game-champion-icon">
-                                    <img src="~/images/champion/@(@game.ChampionObject.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @game.Champion" alt="Champion">
+                                <div class="played-game-champion-icon" title="GameId: @game.GameId">
+                                    <img src="~/images/champion/@(@game.ChampionObject.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @game.ChampionId | @game.ChampionObject.ChampionName" alt="Champion">
                                 </div>
                                 <div class="played-game-info">
-                                    <div>GameID: @game.GameId</div>
-                                    <div>ChampionName: @game.ChampionObject.ChampionName</div>
                                     @if (game.Position != null)
                                     {
-                                        <div>Position: @game.Position.Name</div>
+                                        <div positionGame>Position: @game.Position.Name</div>
                                     }
-                                    <div>QueueType: @game.GameObject.QueueType.Description</div>
-                                    <div>TimeStamp: @game.GameObject.Timestamp</div>
-                                    <div>DateTime:  @game.GameObject.DateCreated.ToString("dd-MM-yyyy HH:mm:ss")</div>
-                                    <div>
+                                    <div class="queueTypeGame" title="QueueTypeId: @game.GameObject.QueueTypeId">QueueType: @game.GameObject.QueueType.Description</div>
+                                    <div class="timeSinceGame" title="@game.GameObject.DateCreated.ToString("dd-MM-yyyy HH:mm:ss")">
                                         Time since:
                                         @{
                                             TimeSpan timeSince = DateTime.Now.Subtract(game.GameObject.DateCreated);

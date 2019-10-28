@@ -13,6 +13,7 @@ namespace Model
         public Map Map { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
+        public string DisplayName { get; set; }
         
     }
 }

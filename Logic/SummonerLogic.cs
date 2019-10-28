@@ -30,14 +30,12 @@ namespace Logic
             SummonerPlayedGamesList summonerPlayedGames = _iSummonerContext.GetSummonerPlayedGames(region, summonerIdAccount);
             foreach (SummonerPlayedGame summonerPlayedGame in summonerPlayedGames.Matches)
             {
-                summonerPlayedGame.ChampionObject = _iSummonerContext.GetChampionInfoFromId(summonerPlayedGame.Champion);
+                summonerPlayedGame.ChampionObject = _iSummonerContext.GetChampionInfoFromId(summonerPlayedGame.ChampionId);
                 summonerPlayedGame.GameObject = _iSummonerContext.GetPlayedGameInfoFromId(region, summonerPlayedGame.GameId);
                 summonerPlayedGame.GameObject.QueueType = _iSummonerContext.GetQueueTypeInfoFromId(summonerPlayedGame.GameObject.QueueTypeId);
-                // TODO: convert Timestamp to actual date
                 DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
                 dtDateTime = dtDateTime.AddMilliseconds(summonerPlayedGame.GameObject.Timestamp).ToLocalTime();
                 summonerPlayedGame.GameObject.DateCreated = dtDateTime;
-                //summonerPlayedGame.GameObject.Timestamp = summonerPlayedGame.
                 // TODO: Fix so you don't get a Position in games like ARAM
                 summonerPlayedGame.Position = _iSummonerContext.GetPositionFromRoleAndLane(summonerPlayedGame.Role, summonerPlayedGame.Lane);
 
