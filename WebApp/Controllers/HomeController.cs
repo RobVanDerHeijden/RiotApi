@@ -12,6 +12,9 @@ namespace WebApp.Controllers
     {
         private readonly SummonerLogic _summonerLogic;
 
+        // TODO: Add routes
+        // TODO: Add viewmodels
+
         public HomeController(ISummonerContext summonerContext)
         {
             _summonerLogic = new SummonerLogic(summonerContext);
@@ -43,7 +46,7 @@ namespace WebApp.Controllers
                 TempData["ProfileIconId"] = summoner.ProfileIconId;
                 TempData["RevisionDate"] = summoner.RevisionDateLong;
                 // API CALL #2 + 1 Per Match
-                SummonerPlayedGamesList summonerPlayedGames = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner.AccountId);
+                SummonerPlayedGamesList summonerPlayedGames = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner);
                 ViewBag.PlayedGames = summonerPlayedGames.Matches;
 
                 // API CALL #3

@@ -1438,7 +1438,7 @@ namespace Data.Contexts.Memory
             string path = "match/v4/matchlists/by-account/" + summonerIdAccount;
 
             // TODO: Remove + "&endIndex=5". Only for testing smaller sample
-            HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path) + "&endIndex=10");
+            HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path) + "&endIndex=5");
             string content = response.Content.ReadAsStringAsync().Result;
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)

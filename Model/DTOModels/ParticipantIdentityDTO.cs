@@ -7,6 +7,6 @@ namespace RiotApi.Model
     public class ParticipantIdentityDTO
     {
         public int ParticipantId { get; set; }
-        public Dictionary<string, PlayerDTO> Player { get; set; }
+        public PlayerDTO Player { get; set; }
     }
 }

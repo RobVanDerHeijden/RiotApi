@@ -7,6 +7,7 @@ namespace Model
 {
     public class SummonerPlayedGame
     {
+        public int ParticipantId { get; set; }
         public int IdProfileIcon { get; set; }
         public string GameResult { get; set; } // Values can be: Win, Fail TODO: find out what value is used for a remake
         public int ChampionLevel { get; set; }

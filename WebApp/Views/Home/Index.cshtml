@@ -1,4 +1,5 @@
 ﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
+@using Model
 @model WebApp.Models.SummonerViewModel
 
 @{
@@ -176,6 +177,10 @@
                                         }
                                     </div>
                                 </div>
+                                @foreach (var participant in game.GameObject.ParticipantIdentities)
+                                {
+                                <div>Summoner @participant.ParticipantId : @participant.Player.SummonerName</div>
+                                }
                             </div>
                         </div>
                     }
