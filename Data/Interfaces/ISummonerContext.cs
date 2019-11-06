@@ -19,6 +19,8 @@ namespace Data.Interfaces
         Position GetPositionFromRoleAndLane(string role, string lane);
         QueueType GetQueueTypeInfoFromId(int queueTypeId);
 
+        //List<PlayedGame> GetSummonerPlayedGames2(string region, string summonerIdAccount);
+
         // Get Ranks
         List<Rank> GetSummonerRanks(string region, string encryptedSummonerId);
 

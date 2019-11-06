@@ -45,6 +45,10 @@ namespace WebApp.Controllers
                 TempData["SummonerLevel"] = summoner.SummonerLevel;
                 TempData["ProfileIconId"] = summoner.ProfileIconId;
                 TempData["RevisionDate"] = summoner.RevisionDateLong;
+
+                //summoner.Games = _summonerLogic.GetSummonerPlayedGames2(summonerViewModel.Region, summoner); // TODO: Clean up this method
+                ViewBag.Summoner = summoner;
+
                 // API CALL #2 + 1 Per Match
                 SummonerPlayedGamesList summonerPlayedGames = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner);
                 ViewBag.PlayedGames = summonerPlayedGames.Matches;

@@ -23,10 +23,10 @@ namespace Model
         public bool FirstBlood { get; set; }
         public bool IsBot { get; set; }
         public Summoner Summoner { get; set; }
-        public long GameId { get; set; } 
-        public PlayedGame GameObject { get; set; }
+        public long GameId { get; set; } // TODO: Remove these 2 when cleaned up order of getting summoner games
+        public PlayedGame GameObject { get; set; }// TODO: Remove these 2 when cleaned up order of getting summoner games
         [JsonProperty("champion")]
-        public int ChampionId { get; set; } 
+        public int ChampionId { get; set; }
         public Champion ChampionObject { get; set; }
         public string Role { get; set; }
         public string Lane { get; set; }

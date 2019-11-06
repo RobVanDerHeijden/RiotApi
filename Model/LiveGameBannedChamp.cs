@@ -7,6 +7,6 @@ namespace Model
     public class LiveGameBannedChamp
     {
         public int PickTurn { get; set; }
-        public Team Team { get; set; }
+        public UserTeam Team { get; set; }
     }
 }

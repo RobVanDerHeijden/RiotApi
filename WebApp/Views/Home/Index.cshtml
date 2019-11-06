@@ -27,13 +27,13 @@
             </div>
         </form>
     </div>
-    @if (TempData["SummonerName"] != null)
+    @if (ViewBag.Summoner != null)
     {
 
         <div class="col-md-8" style="border: 1px solid red">
             <div class="summoner">
                 <div class="profile-icon">
-                    <img src="~/images/profileicon/@(TempData["ProfileIconId"]).png" class="profile-icon-image">
+                    <img src="~/images/profileicon/@(ViewBag.Summoner.ProfileIconId).png" class="profile-icon-image">
                 </div>
                 <div class="summoner-info">
                     <div class="summoner-name">@TempData["SummonerName"]</div>
@@ -136,18 +136,23 @@
                         <div class="played-game-wrap">
                             <div class="played-game">
                                 <div class="played-game-champion-icon" title="GameId: @game.GameId">
-                                    <img src="~/images/champion/@(@game.ChampionObject.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @game.ChampionId | @game.ChampionObject.ChampionName" alt="Champion">
+                                    @if (game.Season == 3)
+                                    {
+                                        <img src="~/images/champion/@(@game.ChampionObject.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @game.ChampionId | @game.ChampionObject.ChampionName" alt="Champion">
+                                    }
+
+
                                 </div>
                                 <div class="played-game-info">
-                                    @if (game.Position != null)
+                                    @if (/*game.Position != null*/ game.Season == 3)
                                     {
                                         <div positionGame>Position: @game.Position.Name</div>
                                     }
-                                    <div class="queueTypeGame" title="QueueTypeId: @game.GameObject.QueueTypeId">QueueType: @game.GameObject.QueueType.Description</div>
-                                    <div class="timeSinceGame" title="@game.GameObject.DateCreated.ToString("dd-MM-yyyy HH:mm:ss")">
+                                    <div class="queueTypeGame" title="QueueTypeId: @game.QueueTypeId">QueueType: @game.QueueType.Description</div>
+                                    <div class="timeSinceGame" title="@game.DateCreated.ToString("dd-MM-yyyy HH:mm:ss")">
                                         Time since:
                                         @{
-                                            TimeSpan timeSince = DateTime.Now.Subtract(game.GameObject.DateCreated);
+                                            TimeSpan timeSince = DateTime.Now.Subtract(game.DateCreated);
                                             double timeSinceInDays = (Math.Floor(timeSince.TotalDays));
                                             double timeSinceInHours = (Math.Floor(timeSince.TotalHours));
                                         }
@@ -177,10 +182,37 @@
                                         }
                                     </div>
                                 </div>
-                                @foreach (var participant in game.GameObject.ParticipantIdentities)
+                                @if (game.ParticipantIdentities != null)
                                 {
-                                <div>Summoner @participant.ParticipantId : @participant.Player.SummonerName</div>
+                                    foreach (var participant in game.ParticipantIdentities)
+                                    {
+
+                                        <div>Summoner @participant.ParticipantId : @participant.Player.SummonerName</div>
+                                    }
+                                    @foreach (var player in game.Participants)
+                                    {
+                                        <div>Champion: @player.ChampionId</div>
+                                    }
                                 }
+
+
+                                @if (game.PlayedGameTeams != null)
+                                {
+                                    foreach (var team in game.PlayedGameTeams)
+                                    {
+                                        <div>Team1 | TeamId: @team.TeamId</div>
+
+                                        if (team.Win == "Win")
+                                        {
+                                            <div>Won</div>
+                                        }
+                                        else if (team.Win == "Fail")
+                                        {
+                                            <div>Lost</div>
+                                        }
+                                    }
+                                }
+
                             </div>
                         </div>
                     }

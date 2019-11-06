@@ -13,6 +13,6 @@ namespace Model
         public string Email { get; set; }
         public DateTime DateRegistered { get; set; }
         public List<Summoner> Favorites { get; set; }
-        public List<Team> Teams { get; set; }
+        public List<UserTeam> Teams { get; set; }
     }
 }

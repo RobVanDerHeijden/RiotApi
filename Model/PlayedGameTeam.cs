@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using RiotApi.Model;
 
-namespace RiotApi.Model
+namespace Model
 {
-    public class TeamStatsDTO
+    public class PlayedGameTeam
     {
         public int TeamId { get; set; }
         public string Win { get; set; }
@@ -22,5 +22,6 @@ namespace RiotApi.Model
         public int RiftHeraldKills { get; set; }
         public int DominionVictoryScore { get; set; }
         public List<TeamBansDTO> Bans { get; set; }
+        public List<SummonerPlayedGame> PlayedGamePlayers { get; set; }
     }
 }

@@ -12,8 +12,8 @@ namespace RiotApi.Model
         public int Spell1Id { get; set; }
         public int Spell2Id { get; set; }
         public int HighestAchievedSeasonTier { get; set; }
-        public Dictionary<string, ParticipantStatsDTO> Stats { get; set; }
-        public Dictionary<string, ParticipantTimelineDTO> Timeline { get; set; }
+        public ParticipantStatsDTO Stats { get; set; }
+        public ParticipantTimelineDTO Timeline { get; set; }
         
         // Deze zijn van oud seizoen / depricated
         // List[RuneDto]
