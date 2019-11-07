@@ -182,35 +182,39 @@
                                         }
                                     </div>
                                 </div>
-                                @if (game.ParticipantIdentities != null)
+                                @*@if (game.ParticipantIdentities != null)
                                 {
                                     foreach (var participant in game.ParticipantIdentities)
                                     {
 
                                         <div>Summoner @participant.ParticipantId : @participant.Player.SummonerName</div>
                                     }
-                                    @foreach (var player in game.Participants)
+                                    foreach (var player in game.Participants)
                                     {
                                         <div>Champion: @player.ChampionId</div>
                                     }
-                                }
+                                }*@
 
 
                                 @if (game.PlayedGameTeams != null)
                                 {
-                                    foreach (var team in game.PlayedGameTeams)
-                                    {
-                                        <div>Team1 | TeamId: @team.TeamId</div>
+                                    <div class="teams-wrap">
+                                        @foreach (var team in game.PlayedGameTeams)
+                                        {
+                                            <div class="team-block">
+                                                <div>Team1 | TeamId: @team.TeamId</div>
 
-                                        if (team.Win == "Win")
-                                        {
-                                            <div>Won</div>
+                                                <div>@team.Win</div>
+
+                                                @foreach (var player in team.PlayedGamePlayers)
+                                                {
+                                                    <div>SummonerName: @player.SummonerName</div>
+                                                    <div>Spell1: @player.SummonerSpell1Id | Spell2: @player.SummonerSpell2Id</div>
+                                                    <div>Champion: @player.ChampionId</div>
+                                                }
+                                            </div>
                                         }
-                                        else if (team.Win == "Fail")
-                                        {
-                                            <div>Lost</div>
-                                        }
-                                    }
+                                    </div>
                                 }
 
                             </div>

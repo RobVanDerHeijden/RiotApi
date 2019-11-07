@@ -97,6 +97,12 @@ body {
     vertical-align: baseline;
 }
 .played-game-info {
-    display: inline-block;
+    display: block;
     vertical-align: top;
+}
+.teams-wrap {
+
+}
+.team-block {
+    display: inline-block;
 }

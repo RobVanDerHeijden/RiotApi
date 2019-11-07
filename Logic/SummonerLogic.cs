@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Data.Interfaces;
 using Model;
@@ -34,45 +35,75 @@ namespace Logic
             // gameinfo = getgameinfo (getgameinfo includes getparticipantsinfo)
             // TODO: Find a cleaner solution to fill this object variables, I mean there has te be one right?
             // Perhaps a List<int> GameIds -> then foreach in GameIds
-            foreach (PlayedGame summonerPlayedGame in summonerPlayedGames.Matches)
+            foreach (PlayedGame playedGame in summonerPlayedGames.Matches)
             {
                 //summonerPlayedGame.Summoner = summoner; // Summoner who we are looking the game up through
 
                 // TODO: If gameId already exists don't look this up through API, will DRASTICALLY decrease number API Calls
-                PlayedGame tempPlayedGameObject = _iSummonerContext.GetPlayedGameInfoFromId(region, summonerPlayedGame.GameId);
+                PlayedGame tempPlayedGameObject = _iSummonerContext.GetPlayedGameInfoFromId(region, playedGame.GameId);
                 
                 //summonerPlayedGame.ChampionObject = _iSummonerContext.GetChampionInfoFromId(summonerPlayedGame.ChampionId);
                 // TODO: Fix so you don't get a Position in games like ARAM
                 //summonerPlayedGame.Position = _iSummonerContext.GetPositionFromRoleAndLane(summonerPlayedGame.Role, summonerPlayedGame.Lane);
-                summonerPlayedGame.Season = tempPlayedGameObject.Season;
-                summonerPlayedGame.Duration = tempPlayedGameObject.Duration;
-                summonerPlayedGame.ParticipantIdentities = tempPlayedGameObject.ParticipantIdentities;
-                summonerPlayedGame.Participants = tempPlayedGameObject.Participants;
-                summonerPlayedGame.PlayedGameTeams = tempPlayedGameObject.PlayedGameTeams;
-                summonerPlayedGame.QueueTypeId = tempPlayedGameObject.QueueTypeId;
-                summonerPlayedGame.Timestamp = tempPlayedGameObject.Timestamp;
+                playedGame.Season = tempPlayedGameObject.Season;
+                playedGame.Duration = tempPlayedGameObject.Duration;
+                playedGame.ParticipantIdentities = tempPlayedGameObject.ParticipantIdentities;
+                playedGame.Participants = tempPlayedGameObject.Participants;
+                playedGame.PlayedGameTeams = tempPlayedGameObject.PlayedGameTeams;
+                playedGame.QueueTypeId = tempPlayedGameObject.QueueTypeId;
+                playedGame.Timestamp = tempPlayedGameObject.Timestamp;
 
                 DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-                dtDateTime = dtDateTime.AddMilliseconds(summonerPlayedGame.Timestamp).ToLocalTime();
-                summonerPlayedGame.DateCreated = dtDateTime;
+                dtDateTime = dtDateTime.AddMilliseconds(playedGame.Timestamp).ToLocalTime();
+                playedGame.DateCreated = dtDateTime;
 
-                summonerPlayedGame.QueueType = _iSummonerContext.GetQueueTypeInfoFromId(summonerPlayedGame.QueueTypeId);
+                playedGame.QueueType = _iSummonerContext.GetQueueTypeInfoFromId(playedGame.QueueTypeId);
 
-                //foreach (PlayedGameTeam playedGameTeam in summonerPlayedGame.PlayedGameTeams)
-                //{
-                //    playedGameTeam.PlayedGamePlayers = 
-                //}
+                // Pseudo code:
+                /*
+                 *
+                 * for each team
+                 *  for each participant in participants in team
+                 *      insert data into player
+                 *
+                 *
+                 *
+                 *
+                 *
+                 */
+
+
+
+
+                // TODO: this can probally be more eficient, perhaps swaping foreaches
+                foreach (PlayedGameTeam playedGameTeam in playedGame.PlayedGameTeams)
+                {
+                    playedGameTeam.PlayedGamePlayers = new List<SummonerPlayedGame>();
+                    foreach (var participant in playedGame.Participants.Where(n => n.TeamId == playedGameTeam.TeamId))
+                    {
+                        //foreach (var participantIdentityDto in playedGame.ParticipantIdentities.Where(n => n.ParticipantId == participant.ParticipantId))
+                        //{
+                            
+                        //}
+                        var playerIdentity = playedGame.ParticipantIdentities.Single(s => s.ParticipantId == participant.ParticipantId);
+                        var playerName = playerIdentity.Player.SummonerName;
+
+                        SummonerPlayedGame asd = new SummonerPlayedGame()
+                        {
+                            SummonerName = playerName,
+                            //Summoner = GetSummonerByName(region, playerName), // This Works, but isn't worth all the extra API Calls
+                            ChampionId = participant.ChampionId,
+                            SummonerSpell1Id = participant.Spell1Id,
+                            SummonerSpell2Id = participant.Spell2Id
+                            // TODO: Add the rest, or find better solution for this
+                        };
+                        playedGameTeam.PlayedGamePlayers.Add(asd);
+                    }
+                }
             }
             return summonerPlayedGames;
         }
 
-        public List<PlayedGame> GetSummonerPlayedGames2(string region, Summoner summoner)
-        {
-
-            SummonerPlayedGamesList summonerPlayedGames =  _iSummonerContext.GetSummonerPlayedGames(region, summoner.AccountId);
-            //List<PlayedGame> playedGames = summonerPlayedGames.Matches;
-            return null;
-        }
 
         public List<Rank> GetSummonerRanks(string region, string encryptedSummonerId)
         {
