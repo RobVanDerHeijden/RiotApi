@@ -58,10 +58,10 @@ namespace Logic
 
                 summonerPlayedGame.QueueType = _iSummonerContext.GetQueueTypeInfoFromId(summonerPlayedGame.QueueTypeId);
 
-                foreach (PlayedGameTeam playedGameTeam in summonerPlayedGame.PlayedGameTeams)
-                {
-                    playedGameTeam.PlayedGamePlayers = 
-                }
+                //foreach (PlayedGameTeam playedGameTeam in summonerPlayedGame.PlayedGameTeams)
+                //{
+                //    playedGameTeam.PlayedGamePlayers = 
+                //}
             }
             return summonerPlayedGames;
         }
