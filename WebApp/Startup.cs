@@ -33,6 +33,7 @@ namespace WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSession(s => s.IdleTimeout = TimeSpan.FromMinutes(10));
 
             //services.AddTransient<ISummonerContext, SummonerMemoryContext>(); // Always Different: new instance
             //services.AddSingleton<ISummonerContext, SummonerMemoryContext>(); // Same with same request

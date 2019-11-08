@@ -134,20 +134,20 @@
                     @foreach (var game in ViewBag.PlayedGames)
                     {
                         <div class="played-game-wrap">
-                            <div class="played-game">
-                                <div class="played-game-champion-icon" title="GameId: @game.GameId">
-                                    @if (game.Season == 3)
+                            <div class="played-game" title="GameId: @game.GameId">
+                                <div class="played-game-champion-icon">
+                                    
+                                    @*@if (game.Season != 3)
                                     {
-                                        <img src="~/images/champion/@(@game.ChampionObject.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @game.ChampionId | @game.ChampionObject.ChampionName" alt="Champion">
-                                    }
+                                        var playerIdentity = game.participantIdentities.Single(s => s.ParticipantId == ViewBag.Summoner.Name);
+                                        var asd = game.participantIdentities.Find(x => x.GetId() == "xy");
+                                        var currentSummoner = game.participantIdentities.player.summonername == ViewBag.Summoner.Name;
+                                        //<img src="" id="summoner-champion-@game.GameId"/>
 
-
+                                        <img src="~/images/champion/@(@game.ChampionObject.ChampionName).png" id="summoner-champion-@game.GameId" class="played-game-champion-icon-image" title="ChampionID: @game.ChampionId | @game.ChampionObject.ChampionName" alt="Champion">
+                                    }*@
                                 </div>
                                 <div class="played-game-info">
-                                    @if (/*game.Position != null*/ game.Season == 3)
-                                    {
-                                        <div positionGame>Position: @game.Position.Name</div>
-                                    }
                                     <div class="queueTypeGame" title="QueueTypeId: @game.QueueTypeId">QueueType: @game.QueueType.Description</div>
                                     <div class="timeSinceGame" title="@game.DateCreated.ToString("dd-MM-yyyy HH:mm:ss")">
                                         Time since:
@@ -182,37 +182,31 @@
                                         }
                                     </div>
                                 </div>
-                                @*@if (game.ParticipantIdentities != null)
-                                {
-                                    foreach (var participant in game.ParticipantIdentities)
-                                    {
-
-                                        <div>Summoner @participant.ParticipantId : @participant.Player.SummonerName</div>
-                                    }
-                                    foreach (var player in game.Participants)
-                                    {
-                                        <div>Champion: @player.ChampionId</div>
-                                    }
-                                }*@
 
 
                                 @if (game.PlayedGameTeams != null)
                                 {
+                                    
                                     <div class="teams-wrap">
                                         @foreach (var team in game.PlayedGameTeams)
                                         {
-                                            <div class="team-block">
-                                                <div>Team1 | TeamId: @team.TeamId</div>
+                                        <div class="team-block">
+                                            <div>TeamId: @team.TeamId</div>
+                                            <div>@team.Win</div>
 
-                                                <div>@team.Win</div>
-
-                                                @foreach (var player in team.PlayedGamePlayers)
+                                            @foreach (var player in team.PlayedGamePlayers)
+                                            {
+                                                @*if (player.SummonerName == ViewBag.Summoner.Name)
                                                 {
-                                                    <div>SummonerName: @player.SummonerName</div>
-                                                    <div>Spell1: @player.SummonerSpell1Id | Spell2: @player.SummonerSpell2Id</div>
-                                                    <div>Champion: @player.ChampionId</div>
-                                                }
-                                            </div>
+                                                    <script>$("#summoner-champion-@game.GameId").attr("src", "~/images/champion/@(player.ChampionObject.ChampionName).png");</script>
+                                                }*@
+
+                                                <div><b>@player.SummonerName</b></div>
+                                                <div>Spell1: @player.SummonerSpell1Id | Spell2: @player.SummonerSpell2Id</div>
+                                                <div>Champion: @player.ChampionObject.ChampionName</div>
+                                                <div><img src="~/images/champion/@(@player.ChampionObject.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @player.ChampionId | @player.ChampionObject.ChampionName" alt="Champion"></div>
+                                            }
+                                        </div>
                                         }
                                     </div>
                                 }

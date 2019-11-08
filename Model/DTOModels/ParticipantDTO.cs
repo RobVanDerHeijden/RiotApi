@@ -11,7 +11,7 @@ namespace RiotApi.Model
         public int ChampionId { get; set; }
         public int Spell1Id { get; set; }
         public int Spell2Id { get; set; }
-        public int HighestAchievedSeasonTier { get; set; }
+        public string HighestAchievedSeasonTier { get; set; }
         public ParticipantStatsDTO Stats { get; set; }
         public ParticipantTimelineDTO Timeline { get; set; }
         

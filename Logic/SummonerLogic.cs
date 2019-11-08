@@ -43,8 +43,7 @@ namespace Logic
                 PlayedGame tempPlayedGameObject = _iSummonerContext.GetPlayedGameInfoFromId(region, playedGame.GameId);
                 
                 //summonerPlayedGame.ChampionObject = _iSummonerContext.GetChampionInfoFromId(summonerPlayedGame.ChampionId);
-                // TODO: Fix so you don't get a Position in games like ARAM
-                //summonerPlayedGame.Position = _iSummonerContext.GetPositionFromRoleAndLane(summonerPlayedGame.Role, summonerPlayedGame.Lane);
+                
                 playedGame.Season = tempPlayedGameObject.Season;
                 playedGame.Duration = tempPlayedGameObject.Duration;
                 playedGame.ParticipantIdentities = tempPlayedGameObject.ParticipantIdentities;
@@ -58,22 +57,7 @@ namespace Logic
                 playedGame.DateCreated = dtDateTime;
 
                 playedGame.QueueType = _iSummonerContext.GetQueueTypeInfoFromId(playedGame.QueueTypeId);
-
-                // Pseudo code:
-                /*
-                 *
-                 * for each team
-                 *  for each participant in participants in team
-                 *      insert data into player
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-
-
-
+                
 
                 // TODO: this can probally be more eficient, perhaps swaping foreaches
                 foreach (PlayedGameTeam playedGameTeam in playedGame.PlayedGameTeams)
@@ -81,20 +65,23 @@ namespace Logic
                     playedGameTeam.PlayedGamePlayers = new List<SummonerPlayedGame>();
                     foreach (var participant in playedGame.Participants.Where(n => n.TeamId == playedGameTeam.TeamId))
                     {
-                        //foreach (var participantIdentityDto in playedGame.ParticipantIdentities.Where(n => n.ParticipantId == participant.ParticipantId))
-                        //{
-                            
-                        //}
                         var playerIdentity = playedGame.ParticipantIdentities.Single(s => s.ParticipantId == participant.ParticipantId);
                         var playerName = playerIdentity.Player.SummonerName;
 
                         SummonerPlayedGame asd = new SummonerPlayedGame()
                         {
                             SummonerName = playerName,
-                            //Summoner = GetSummonerByName(region, playerName), // This Works, but isn't worth all the extra API Calls
+                            //Summoner = GetSummonerByName(region, playerName), // This Works, but might not be worth all the extra API Calls
                             ChampionId = participant.ChampionId,
                             SummonerSpell1Id = participant.Spell1Id,
-                            SummonerSpell2Id = participant.Spell2Id
+                            SummonerSpell2Id = participant.Spell2Id,
+
+                            // TODO: Fix so you don't get a Position in games like ARAM
+                            Position = _iSummonerContext.GetPositionFromRoleAndLane(participant.Timeline.Role, participant.Timeline.Lane),
+
+                            ChampionObject = _iSummonerContext.GetChampionInfoFromId(participant.ChampionId)
+
+
                             // TODO: Add the rest, or find better solution for this
                         };
                         playedGameTeam.PlayedGamePlayers.Add(asd);
