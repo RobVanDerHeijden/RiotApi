@@ -6,7 +6,9 @@ using System.Net.Http;
 using System.Text;
 using Data.Interfaces;
 using Model;
+using Model.DTOModels;
 using Newtonsoft.Json;
+using Version = System.Version;
 
 namespace Data.Contexts.Memory
 {
@@ -523,6 +525,11 @@ namespace Data.Contexts.Memory
             {
                 Key = 113,
                 ChampionName = "Sejuani"
+            },
+            new Champion()
+            {
+                Key = 235,
+                ChampionName = "Senna"
             },
             new Champion()
             {
@@ -1410,6 +1417,8 @@ namespace Data.Contexts.Memory
 
         };
 
+        private readonly VersionCollection _versionCollection = new VersionCollection();
+
         private readonly string _APIFilePath = "API/APIKey.txt";
 
         public List<string> GetRegions()
@@ -1500,7 +1509,7 @@ namespace Data.Contexts.Memory
 
         
 
-
+        // API Helpers
         protected HttpResponseMessage GetHttpResponse(string URL)
         {
             using (HttpClient client = new HttpClient())
@@ -1518,7 +1527,28 @@ namespace Data.Contexts.Memory
         }
         protected string GetCombinedURI(string region, string path)
         {
+            GetPatchVersion();
             return "https://" + region + ".api.riotgames.com/lol/" + path + "?api_key=" + GetAPIKey();
         }
+
+        // API Static Section Start
+        public string GetPatchVersion()
+        {
+            string path = "https://ddragon.leagueoflegends.com/api/versions.json";
+
+            HttpResponseMessage response = GetHttpResponse(path);
+            string content = response.Content.ReadAsStringAsync().Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                List<string> listStrings = JsonConvert.DeserializeObject<List<string>>(content);
+                _versionCollection.Versions = listStrings;
+                return _versionCollection.Versions.First();
+            }
+
+            return null;
+        }
+
+
     }
 }
