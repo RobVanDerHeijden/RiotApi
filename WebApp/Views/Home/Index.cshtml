@@ -134,7 +134,7 @@
                     @foreach (var game in ViewBag.PlayedGames)
                     {
                         <div class="played-game-wrap">
-                            <div class="played-game" title="GameId: @game.GameId">
+                            <div class="played-game" id="@game.GameId" title="GameId: @game.GameId">
                                 <div class="played-game-champion-icon">
                                     
                                     @*@if (game.Season != 3)
@@ -204,7 +204,8 @@
                                                 <div><b>@player.SummonerName</b></div>
                                                 <div>Spell1: @player.SummonerSpell1Id | Spell2: @player.SummonerSpell2Id</div>
                                                 <div>Champion: @player.ChampionObject.ChampionName</div>
-                                                <div><img src="~/images/champion/@(@player.ChampionObject.ChampionName).png" class="played-game-champion-icon-image" title="ChampionID: @player.ChampionId | @player.ChampionObject.ChampionName" alt="Champion"></div>
+                                                <div><img src="~/images/champion/@(@player.ChampionObject.KeyName).png" class="played-game-champion-icon-image" title="ChampionID: @player.ChampionId | @player.ChampionObject.ChampionName" alt="Champion"></div>
+                                                
                                             }
                                         </div>
                                         }

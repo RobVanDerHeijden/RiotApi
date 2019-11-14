@@ -36,11 +36,12 @@ namespace WebApp.Controllers
             Summoner summoner = _summonerLogic.GetSummonerByName(summonerViewModel.Region, summonerViewModel.SummonerName);
             if (summoner == null)
             {
+                // TODO: Make this a rederect? to a not found page perhaps
                 TempData["SummonerName"] = "SUMMONER NOT FOUND";
             }
             else
             {
-                // TODO: move tempdata to viewback with object, clarity and easier
+                // TODO: move tempdata to viewback with object, for clarity and easier
                 TempData["SummonerName"] = summoner.Name;
                 TempData["SummonerLevel"] = summoner.SummonerLevel;
                 TempData["ProfileIconId"] = summoner.ProfileIconId;

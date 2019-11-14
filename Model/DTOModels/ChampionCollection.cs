@@ -10,6 +10,8 @@ namespace Model.DTOModels
         [JsonProperty("type")]
         public string CollectionType { get; set; }
         [JsonProperty("data")]
-        public List<ChampionInfo> ChampionInfoList { get; set; }
+        //public List<Champion> ChampionInfoList { get; set; }
+        public Dictionary<string, Champion> ChampionInfos { get; set; }
+        public List<Champion> ChampionInfoList { get; set; }
     }
 }

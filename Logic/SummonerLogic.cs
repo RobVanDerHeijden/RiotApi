@@ -33,16 +33,12 @@ namespace Logic
             SummonerPlayedGamesList summonerPlayedGames = _iSummonerContext.GetSummonerPlayedGames(region, summoner.AccountId);
             // foreach game:
             // gameinfo = getgameinfo (getgameinfo includes getparticipantsinfo)
-            // TODO: Find a cleaner solution to fill this object variables, I mean there has te be one right?
+            // TODO: Find a cleaner solution to fill this object variables, I mean there has te be one, right?
             // Perhaps a List<int> GameIds -> then foreach in GameIds
             foreach (PlayedGame playedGame in summonerPlayedGames.Matches)
             {
-                //summonerPlayedGame.Summoner = summoner; // Summoner who we are looking the game up through
-
                 // TODO: If gameId already exists don't look this up through API, will DRASTICALLY decrease number API Calls
                 PlayedGame tempPlayedGameObject = _iSummonerContext.GetPlayedGameInfoFromId(region, playedGame.GameId);
-                
-                //summonerPlayedGame.ChampionObject = _iSummonerContext.GetChampionInfoFromId(summonerPlayedGame.ChampionId);
                 
                 playedGame.Season = tempPlayedGameObject.Season;
                 playedGame.Duration = tempPlayedGameObject.Duration;
@@ -58,8 +54,7 @@ namespace Logic
 
                 playedGame.QueueType = _iSummonerContext.GetQueueTypeInfoFromId(playedGame.QueueTypeId);
                 
-
-                // TODO: this can probally be more eficient, perhaps swaping foreaches
+                
                 foreach (PlayedGameTeam playedGameTeam in playedGame.PlayedGameTeams)
                 {
                     playedGameTeam.PlayedGamePlayers = new List<SummonerPlayedGame>();
@@ -82,7 +77,7 @@ namespace Logic
                             ChampionObject = _iSummonerContext.GetChampionInfoFromId(participant.ChampionId)
 
 
-                            // TODO: Add the rest, or find better solution for this
+                            // TODO: Add the rest of the variables, or find better solution for this
                         };
                         playedGameTeam.PlayedGamePlayers.Add(asd);
                     }

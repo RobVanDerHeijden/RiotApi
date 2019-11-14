@@ -29,7 +29,7 @@ namespace Data.Contexts.Memory
             "RU",
             "PBE1"
         };
-        private readonly List<Champion> _champions = new List<Champion>()
+        private readonly List<Champion> _championsHardCoded = new List<Champion>()
         {
             new Champion()
             {
@@ -762,6 +762,8 @@ namespace Data.Contexts.Memory
                 ChampionName = "Zyra"
             }
         };
+
+        private List<Champion> _champions = new List<Champion>();
         private static readonly List<Map> _maps = new List<Map>()
         {
             new Map()
@@ -1459,6 +1461,11 @@ namespace Data.Contexts.Memory
         }
         public Champion GetChampionInfoFromId(int championId)
         {
+            if (_champions != null && _champions.Count == 0)
+            {
+                GetChampionCollection();
+            }
+            
             Champion champion = _champions.First(item => item.Key == championId);
 
             if (champion == null)
@@ -1527,7 +1534,6 @@ namespace Data.Contexts.Memory
         }
         protected string GetCombinedURI(string region, string path)
         {
-            GetPatchVersion();
             return "https://" + region + ".api.riotgames.com/lol/" + path + "?api_key=" + GetAPIKey();
         }
 
@@ -1544,6 +1550,25 @@ namespace Data.Contexts.Memory
                 List<string> listStrings = JsonConvert.DeserializeObject<List<string>>(content);
                 _versionCollection.Versions = listStrings;
                 return _versionCollection.Versions.First();
+            }
+
+            return null;
+        }
+
+        public ChampionCollection GetChampionCollection()
+        {
+            string path = "http://ddragon.leagueoflegends.com/cdn/" + GetPatchVersion() + "/data/en_US/champion.json";
+
+            HttpResponseMessage response = GetHttpResponse(path);
+            string content = response.Content.ReadAsStringAsync().Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var champsCollection = JsonConvert.DeserializeObject<ChampionCollection>(content);
+                List<Champion> keyValuePairs = champsCollection.ChampionInfos.Values.ToList();
+                _champions = keyValuePairs;
+                champsCollection.ChampionInfoList = _champions;
+                return champsCollection;
             }
 
             return null;
