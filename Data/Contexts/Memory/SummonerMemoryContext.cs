@@ -764,6 +764,7 @@ namespace Data.Contexts.Memory
         };
 
         private List<Champion> _champions = new List<Champion>();
+        private List<SummonerSpell> _summonerSpells = new List<SummonerSpell>();
         private static readonly List<Map> _maps = new List<Map>()
         {
             new Map()
@@ -1475,8 +1476,30 @@ namespace Data.Contexts.Memory
                 
             return champion;
         }
+
+        public SummonerSpell GetSummonerSpellInfoFromId(int summonerSpellId)
+        {
+            if (_summonerSpells != null && _summonerSpells.Count == 0)
+            {
+                GetSummonerSpellCollection();
+            }
+
+            SummonerSpell summonerSpell = _summonerSpells.First(item => item.Key == summonerSpellId);
+
+            if (summonerSpell == null)
+            {
+                throw new Exception();
+            }
+
+            return summonerSpell;
+            
+        }
+
         public PlayedGame GetPlayedGameInfoFromId(string region, long gameId)
         {
+            
+
+            
             string path = "match/v4/matches/" + gameId;
 
             HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path));
@@ -1569,6 +1592,25 @@ namespace Data.Contexts.Memory
                 _champions = keyValuePairs;
                 champsCollection.ChampionInfoList = _champions;
                 return champsCollection;
+            }
+
+            return null;
+        }
+
+        public SummonerSpellCollection GetSummonerSpellCollection()
+        {
+            string path = "http://ddragon.leagueoflegends.com/cdn/" + GetPatchVersion() + "/data/en_US/summoner.json";
+
+            HttpResponseMessage response = GetHttpResponse(path);
+            string content = response.Content.ReadAsStringAsync().Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var summSpellsCollection = JsonConvert.DeserializeObject<SummonerSpellCollection>(content);
+                List<SummonerSpell> keyValuePairs = summSpellsCollection.SummonerSpellInfos.Values.ToList();
+                _summonerSpells = keyValuePairs;
+                summSpellsCollection.SummonerSpellInfoList = _summonerSpells;
+                return summSpellsCollection;
             }
 
             return null;

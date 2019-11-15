@@ -63,7 +63,7 @@ namespace Logic
                         var playerIdentity = playedGame.ParticipantIdentities.Single(s => s.ParticipantId == participant.ParticipantId);
                         var playerName = playerIdentity.Player.SummonerName;
 
-                        SummonerPlayedGame asd = new SummonerPlayedGame()
+                        SummonerPlayedGame newPlayer = new SummonerPlayedGame()
                         {
                             SummonerName = playerName,
                             //Summoner = GetSummonerByName(region, playerName), // This Works, but might not be worth all the extra API Calls
@@ -79,7 +79,16 @@ namespace Logic
 
                             // TODO: Add the rest of the variables, or find better solution for this
                         };
-                        playedGameTeam.PlayedGamePlayers.Add(asd);
+                        if (newPlayer.SummonerSpell1Id != 0 && newPlayer.SummonerSpell2Id != 0)
+                        {
+                            newPlayer.SummonerSpell1Object =
+                                _iSummonerContext.GetSummonerSpellInfoFromId(participant.Spell1Id);
+                            newPlayer.SummonerSpell2Object =
+                                _iSummonerContext.GetSummonerSpellInfoFromId(participant.Spell2Id);
+                        }
+                        
+
+                        playedGameTeam.PlayedGamePlayers.Add(newPlayer);
                     }
                 }
             }

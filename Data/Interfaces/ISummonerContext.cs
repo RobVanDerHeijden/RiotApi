@@ -15,6 +15,8 @@ namespace Data.Interfaces
         // Get Games
         SummonerPlayedGamesList GetSummonerPlayedGames(string region, string summonerIdAccount);
         Champion GetChampionInfoFromId(int championId);
+        SummonerSpell GetSummonerSpellInfoFromId(int summonerSpellId);
+        
         PlayedGame GetPlayedGameInfoFromId(string region, long gameId);
         Position GetPositionFromRoleAndLane(string role, string lane);
         QueueType GetQueueTypeInfoFromId(int queueTypeId);

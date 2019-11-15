@@ -49,7 +49,7 @@ namespace Model
         //[JsonProperty("movespeed")]
         //public int MoveSpeed { get; set; }
 
-        //[JsonProperty("tags")]
-        //public List<Tag> Tags { get; set; }
+        [JsonProperty("tags")]
+        public List<string> Tags { get; set; }
     }
 }
