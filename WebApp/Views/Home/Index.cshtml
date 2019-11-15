@@ -200,18 +200,20 @@
                                                 {
                                                     <script>$("#summoner-champion-@game.GameId").attr("src", "~/images/champion/@(player.ChampionObject.ChampionName).png");</script>
                                                 }*@
-                                            <div class="player-block">
-                                                <div><img src="~/images/champion/@(@player.ChampionObject.KeyName).png" class="played-game-champion-icon-image" title="@player.ChampionObject.ChampionName | ChampionID: @player.ChampionId" alt="Champion @player.ChampionObject.ChampionName"></div>
-                                                <div class="player-summoner-spells">
-                                                    @if (player.SummonerSpell1Object != null && player.SummonerSpell2Object != null)
-                                                    {
-                                                        <img src="~/images/spell/@(@player.SummonerSpell1Object.KeyName).png" class="player-summoner-spell-image" title="Spell1: @player.SummonerSpell1Id"/>
-                                                        <img src="~/images/spell/@(@player.SummonerSpell2Object.KeyName).png" class="player-summoner-spell-image" title="Spell2: @player.SummonerSpell2Id"/>
-                                                    }
-                                                    
+                                                <div class="player-block">
+                                                    <div class="champion-summspells-section">
+                                                        <div><img src="~/images/champion/@(@player.ChampionObject.KeyName).png" class="played-game-champion-icon-image" title="@player.ChampionObject.ChampionName | ChampionID: @player.ChampionId" alt="Champion @player.ChampionObject.ChampionName"></div>
+                                                        <div class="player-summoner-spells">
+                                                            @if (player.SummonerSpell1Object != null && player.SummonerSpell2Object != null)
+                                                            {
+                                                                <img src="~/images/spell/@(@player.SummonerSpell1Object.KeyName).png" class="player-summoner-spell-image" title="Spell1: @player.SummonerSpell1Id"/>
+                                                                <img src="~/images/spell/@(@player.SummonerSpell2Object.KeyName).png" class="player-summoner-spell-image" title="Spell2: @player.SummonerSpell2Id"/>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="player-info"><b>@player.SummonerName</b></div>
                                                 </div>
-                                                <div><b>@player.SummonerName</b></div>
-                                            </div>
                                             }
                                         </div>
                                         }

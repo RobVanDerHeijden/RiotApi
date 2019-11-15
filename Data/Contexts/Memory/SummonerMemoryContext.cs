@@ -1468,7 +1468,6 @@ namespace Data.Contexts.Memory
             }
             
             Champion champion = _champions.First(item => item.Key == championId);
-
             if (champion == null)
             {
                 throw new Exception();
@@ -1485,21 +1484,16 @@ namespace Data.Contexts.Memory
             }
 
             SummonerSpell summonerSpell = _summonerSpells.First(item => item.Key == summonerSpellId);
-
             if (summonerSpell == null)
             {
                 throw new Exception();
             }
 
             return summonerSpell;
-            
         }
 
         public PlayedGame GetPlayedGameInfoFromId(string region, long gameId)
         {
-            
-
-            
             string path = "match/v4/matches/" + gameId;
 
             HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path));
