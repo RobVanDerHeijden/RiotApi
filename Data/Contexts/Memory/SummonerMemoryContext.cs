@@ -765,6 +765,8 @@ namespace Data.Contexts.Memory
 
         private List<Champion> _champions = new List<Champion>();
         private List<SummonerSpell> _summonerSpells = new List<SummonerSpell>();
+        private List<Item> _items = new List<Item>();
+
         private static readonly List<Map> _maps = new List<Map>()
         {
             new Map()

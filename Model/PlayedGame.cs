@@ -23,8 +23,6 @@ namespace Model
         public List<ParticipantIdentityDTO> ParticipantIdentities { get; set; }
         [JsonProperty("participants")]
         public List<ParticipantDTO> Participants { get; set; }
-        
-        public List<TeamStatsDTO> Teams { get; set; }
         [JsonProperty("teams")]
         public List<PlayedGameTeam> PlayedGameTeams { get; set; }
 

@@ -31,6 +31,7 @@ namespace Logic
         public SummonerPlayedGamesList GetSummonerPlayedGames(string region, Summoner summoner)
         {
             SummonerPlayedGamesList summonerPlayedGames = _iSummonerContext.GetSummonerPlayedGames(region, summoner.AccountId);
+            summonerPlayedGames.Summoner = summoner;
             // foreach game:
             // gameinfo = getgameinfo (getgameinfo includes getparticipantsinfo)
             // TODO: Find a cleaner solution to fill this object variables, I mean there has te be one, right?
@@ -70,14 +71,17 @@ namespace Logic
                             ChampionId = participant.ChampionId,
                             SummonerSpell1Id = participant.Spell1Id,
                             SummonerSpell2Id = participant.Spell2Id,
+                            
 
                             // TODO: Fix so you don't get a Position in games like ARAM
                             Position = _iSummonerContext.GetPositionFromRoleAndLane(participant.Timeline.Role, participant.Timeline.Lane),
 
-                            ChampionObject = _iSummonerContext.GetChampionInfoFromId(participant.ChampionId)
+                            ChampionObject = _iSummonerContext.GetChampionInfoFromId(participant.ChampionId),
 
 
                             // TODO: Add the rest of the variables, or find better solution for this
+                            //Assists = participant.Stats
+                            PlayerStats = participant.Stats
                         };
                         if (newPlayer.SummonerSpell1Id != 0 && newPlayer.SummonerSpell2Id != 0)
                         {

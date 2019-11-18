@@ -62,25 +62,28 @@ namespace RiotApi.Model
         public int WardsPlaced { get; set; }
         public int WardsKilled { get; set; }
         public bool FirstBloodKill { get; set; }
-        public bool FirstBloodAssist { get; set; }
+        //public bool FirstBloodAssist { get; set; }
         public bool FirstTowerKill { get; set; }
-        public bool FirstTowerAssist { get; set; }
+        //public bool FirstTowerAssist { get; set; }
         public bool FirstInhibitorKill { get; set; }
-        public bool FirstInhibitorAssist { get; set; }
-        public int CombatPlayerScore { get; set; }
-        public int ObjectivePlayerScore { get; set; }
-        public int TotalPlayerScore { get; set; }
-        public int TotalScoreRank { get; set; }
-        public int PlayerScore0 { get; set; }
-        public int PlayerScore1 { get; set; }
-        public int PlayerScore2 { get; set; }
-        public int PlayerScore3 { get; set; }
-        public int PlayerScore4 { get; set; }
-        public int PlayerScore5 { get; set; }
-        public int PlayerScore6 { get; set; }
-        public int PlayerScore7 { get; set; }
-        public int PlayerScore8 { get; set; }
-        public int PlayerScore9 { get; set; }
+        // Depricated Dominion variables
+        //public bool FirstInhibitorAssist { get; set; }
+        //public int CombatPlayerScore { get; set; }
+        //public int ObjectivePlayerScore { get; set; }
+        //public int TotalPlayerScore { get; set; }
+        //public int TotalScoreRank { get; set; }
+        //public int PlayerScore0 { get; set; }
+        //public int PlayerScore1 { get; set; }
+        //public int PlayerScore2 { get; set; }
+        //public int PlayerScore3 { get; set; }
+        //public int PlayerScore4 { get; set; }
+        //public int PlayerScore5 { get; set; }
+        //public int PlayerScore6 { get; set; }
+        //public int PlayerScore7 { get; set; }
+        //public int PlayerScore8 { get; set; }
+        //public int PlayerScore9 { get; set; }
+
+        // RUNES
         public int Perk0 { get; set; }
         public int Perk0Var1 { get; set; }
         public int Perk0Var2 { get; set; }
@@ -107,6 +110,7 @@ namespace RiotApi.Model
         public int Perk5Var3 { get; set; }
         public int PerkPrimaryStyle { get; set; }
         public int PerkSubStyle { get; set; }
+        // Flat Rune stats
         public int StatPerk0 { get; set; }
         public int StatPerk1 { get; set; }
         public int StatPerk2 { get; set; }
