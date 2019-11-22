@@ -231,9 +231,49 @@
 
                                                 </div>
                                                 <div class="player-items">
-                                                    <div>@player.PlayerStats.Item0 | @player.PlayerStats.Item1 | @player.PlayerStats.Item2</div>
-                                                    <div>@player.PlayerStats.Item3 | @player.PlayerStats.Item4 | @player.PlayerStats.Item5</div>
-                                                    <div>@player.PlayerStats.Item6</div>
+                                                    @if (player.PlayerStats.Item0Object != null)
+                                                    {
+                                                        <div class="player-item" title="ID: @player.PlayerStats.Item0 Name: @player.PlayerStats.Item0Object.Name">
+                                                            <img src="~/images/item/@(@player.PlayerStats.Item0).png" class="player-item-image" alt="Item" />
+                                                        </div>
+                                                    }
+                                                    @if (player.PlayerStats.Item1Object != null)
+                                                    {
+                                                        <div class="player-item" title="ID: @player.PlayerStats.Item1 Name: @player.PlayerStats.Item1Object.Name">
+                                                            <img src="~/images/item/@(@player.PlayerStats.Item1).png" class="player-item-image" alt="Item" />
+                                                        </div>
+                                                    }
+                                                    @if (player.PlayerStats.Item2Object != null)
+                                                    {
+                                                        <div class="player-item" title="ID: @player.PlayerStats.Item2 Name: @player.PlayerStats.Item2Object.Name">
+                                                            <img src="~/images/item/@(@player.PlayerStats.Item2).png" class="player-item-image" alt="Item" />
+                                                        </div>
+                                                    }
+                                                    @if (player.PlayerStats.Item3Object != null)
+                                                    {
+                                                        <div class="player-item" title="ID: @player.PlayerStats.Item3 Name: @player.PlayerStats.Item3Object.Name">
+                                                            <img src="~/images/item/@(@player.PlayerStats.Item3).png" class="player-item-image" alt="Item" />
+                                                        </div>
+                                                    }
+                                                    @if (player.PlayerStats.Item4Object != null)
+                                                    {
+                                                        <div class="player-item" title="ID: @player.PlayerStats.Item4 Name: @player.PlayerStats.Item4Object.Name">
+                                                            <img src="~/images/item/@(@player.PlayerStats.Item4).png" class="player-item-image" alt="Item" />
+                                                        </div>
+                                                    }
+                                                    @if (player.PlayerStats.Item5Object != null)
+                                                    {
+                                                        <div class="player-item" title="ID: @player.PlayerStats.Item5 Name: @player.PlayerStats.Item5Object.Name">
+                                                            <img src="~/images/item/@(@player.PlayerStats.Item5).png" class="player-item-image" alt="Item" />
+                                                        </div>
+                                                    }
+                                                    @if (player.PlayerStats.Item6Object != null)
+                                                    {
+                                                        <div class="player-item" title="ID: @player.PlayerStats.Item6 Name: @player.PlayerStats.Item6Object.Name">
+                                                            <img src="~/images/item/@(@player.PlayerStats.Item6).png" class="player-item-image" alt="Item" />
+                                                        </div>
+                                                    }
+                                                    
                                                 </div>
                                             </div>
                                         }

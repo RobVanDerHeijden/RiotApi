@@ -90,7 +90,14 @@ namespace Logic
                             newPlayer.SummonerSpell2Object =
                                 _iSummonerContext.GetSummonerSpellInfoFromId(participant.Spell2Id);
                         }
-                        
+
+                        newPlayer.PlayerStats.Item0Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item0);
+                        newPlayer.PlayerStats.Item1Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item1);
+                        newPlayer.PlayerStats.Item2Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item2);
+                        newPlayer.PlayerStats.Item3Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item3);
+                        newPlayer.PlayerStats.Item4Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item4);
+                        newPlayer.PlayerStats.Item5Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item5);
+                        newPlayer.PlayerStats.Item6Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item6);
 
                         playedGameTeam.PlayedGamePlayers.Add(newPlayer);
                     }

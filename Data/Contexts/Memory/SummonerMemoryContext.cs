@@ -7,6 +7,7 @@ using System.Text;
 using Data.Interfaces;
 using Model;
 using Model.DTOModels;
+using Model.DTOModels.Static;
 using Newtonsoft.Json;
 using Version = System.Version;
 
@@ -765,7 +766,7 @@ namespace Data.Contexts.Memory
 
         private List<Champion> _champions = new List<Champion>();
         private List<SummonerSpell> _summonerSpells = new List<SummonerSpell>();
-        private List<Item> _items = new List<Item>();
+        private Dictionary<string, Item> _items = new Dictionary<string, Item>();
 
         private static readonly List<Map> _maps = new List<Map>()
         {
@@ -1452,7 +1453,7 @@ namespace Data.Contexts.Memory
             string path = "match/v4/matchlists/by-account/" + summonerIdAccount;
 
             // TODO: Remove + "&endIndex=5". Only for testing smaller sample
-            HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path) + "&endIndex=5");
+            HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path) + "&endIndex=3");
             string content = response.Content.ReadAsStringAsync().Result;
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -1494,6 +1495,26 @@ namespace Data.Contexts.Memory
             return summonerSpell;
         }
 
+        public Item GetItemInfoFromId(int itemId)
+        {
+            if (_items != null && _items.Count == 0)
+            {
+                GetItemCollection();
+            }
+
+            //Item itemObject = _items.First(item => item.Key == itemId.ToString());
+            if (_items.TryGetValue(itemId.ToString(), out var itemObject))
+            {
+                /* use myValue */
+                if (itemObject == null)
+                {
+                    throw new Exception();
+                }
+            }
+
+            return itemObject;
+        }
+
         public PlayedGame GetPlayedGameInfoFromId(string region, long gameId)
         {
             string path = "match/v4/matches/" + gameId;
@@ -1532,7 +1553,6 @@ namespace Data.Contexts.Memory
 
             return null;
         }
-
         
 
         // API Helpers
@@ -1612,6 +1632,23 @@ namespace Data.Contexts.Memory
             return null;
         }
 
+        public ItemCollection GetItemCollection()
+        {
+            string path = "http://ddragon.leagueoflegends.com/cdn/" + GetPatchVersion() + "/data/en_US/item.json";
 
+            HttpResponseMessage response = GetHttpResponse(path);
+            string content = response.Content.ReadAsStringAsync().Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var itemsCollection = JsonConvert.DeserializeObject<ItemCollection>(content);
+                List<Item> keyValuePairs = itemsCollection.ItemInfos.Values.ToList();
+                _items = itemsCollection.ItemInfos;
+                //itemsCollection.ItemInfoList = _items;
+                return itemsCollection;
+            }
+
+            return null;
+        }
     }
 }

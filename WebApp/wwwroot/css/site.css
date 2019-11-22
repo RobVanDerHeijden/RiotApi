@@ -104,8 +104,9 @@ body {
     display: inline-block;
 }
 .player-block {
-    width: 300px;
+    width: 450px;
     height: 100px;
+    clear: both;
 }
 .player-champion-summspells-section {
     float: left;
@@ -122,4 +123,14 @@ img.player-summoner-spell-image {
 .player-info {
     float: left;
     width: 130px;
+}
+.player-items {
+    float: left;
+    width: 150px;
+}
+.player-item {
+    float: left;
+}
+img.player-item-image {
+    width: 25px;
 }

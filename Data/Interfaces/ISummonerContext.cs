@@ -14,14 +14,16 @@ namespace Data.Interfaces
 
         // Get Games
         SummonerPlayedGamesList GetSummonerPlayedGames(string region, string summonerIdAccount);
-        Champion GetChampionInfoFromId(int championId);
-        SummonerSpell GetSummonerSpellInfoFromId(int summonerSpellId);
-        
         PlayedGame GetPlayedGameInfoFromId(string region, long gameId);
-        Position GetPositionFromRoleAndLane(string role, string lane);
-        QueueType GetQueueTypeInfoFromId(int queueTypeId);
-
+        
         // Get Ranks
         List<Rank> GetSummonerRanks(string region, string encryptedSummonerId);
+
+        // General
+        Champion GetChampionInfoFromId(int championId);
+        SummonerSpell GetSummonerSpellInfoFromId(int summonerSpellId);
+        Item GetItemInfoFromId(int itemId);
+        Position GetPositionFromRoleAndLane(string role, string lane);
+        QueueType GetQueueTypeInfoFromId(int queueTypeId);
     }
 }
