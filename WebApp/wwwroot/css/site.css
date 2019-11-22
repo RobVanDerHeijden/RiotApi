@@ -108,6 +108,12 @@ body {
     height: 100px;
     clear: both;
 }
+a.player-name-link {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
 .player-champion-summspells-section {
     float: left;
     width: 70px;
@@ -122,11 +128,11 @@ img.player-summoner-spell-image {
 }
 .player-info {
     float: left;
-    width: 130px;
+    width: 100px;
 }
 .player-items {
     float: left;
-    width: 150px;
+    width: 100px;
 }
 .player-item {
     float: left;
