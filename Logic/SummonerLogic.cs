@@ -98,10 +98,8 @@ namespace Logic
                             _iSummonerContext.GetItemInfoFromId(participant.Stats.Item5),
                             _iSummonerContext.GetItemInfoFromId(participant.Stats.Item6)
                         };
-                        newPlayer.PlayerStats.PrimaryRunePath =
-                            _iSummonerContext.GetRunePathInfoFromId(participant.Stats.PerkPrimaryStyle);
-                        newPlayer.PlayerStats.SecondaryRunePath =
-                            _iSummonerContext.GetRunePathInfoFromId(participant.Stats.PerkSubStyle);
+                        newPlayer.PlayerStats.PrimaryRunePath = _iSummonerContext.GetRunePathInfoFromId(participant.Stats.PerkPrimaryStyle);
+                        newPlayer.PlayerStats.SecondaryRunePath = _iSummonerContext.GetRunePathInfoFromId(participant.Stats.PerkSubStyle);
 
                         playedGameTeam.PlayedGamePlayers.Add(newPlayer);
                     }
