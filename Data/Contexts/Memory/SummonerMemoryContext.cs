@@ -1452,7 +1452,7 @@ namespace Data.Contexts.Memory
         {
             string path = "match/v4/matchlists/by-account/" + summonerIdAccount;
 
-            // TODO: Remove + "&endIndex=5". Only for testing smaller sample
+            // TODO: Eventually remove + "&endIndex=x". Only for testing smaller sample
             HttpResponseMessage response = GetHttpResponse(GetCombinedURI(region, path) + "&endIndex=3");
             string content = response.Content.ReadAsStringAsync().Result;
 
@@ -1509,6 +1509,10 @@ namespace Data.Contexts.Memory
                 if (itemObject == null)
                 {
                     throw new Exception();
+                }
+                else
+                {
+                    itemObject.Key = itemId;
                 }
             }
 

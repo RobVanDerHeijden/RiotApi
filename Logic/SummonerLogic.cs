@@ -80,24 +80,25 @@ namespace Logic
 
 
                             // TODO: Add the rest of the variables, or find better solution for this
-                            //Assists = participant.Stats
                             PlayerStats = participant.Stats
                         };
                         if (newPlayer.SummonerSpell1Id != 0 && newPlayer.SummonerSpell2Id != 0)
                         {
-                            newPlayer.SummonerSpell1Object =
-                                _iSummonerContext.GetSummonerSpellInfoFromId(participant.Spell1Id);
-                            newPlayer.SummonerSpell2Object =
-                                _iSummonerContext.GetSummonerSpellInfoFromId(participant.Spell2Id);
+                            newPlayer.SummonerSpell1Object = _iSummonerContext.GetSummonerSpellInfoFromId(participant.Spell1Id);
+                            newPlayer.SummonerSpell2Object = _iSummonerContext.GetSummonerSpellInfoFromId(participant.Spell2Id);
                         }
 
-                        newPlayer.PlayerStats.Item0Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item0);
-                        newPlayer.PlayerStats.Item1Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item1);
-                        newPlayer.PlayerStats.Item2Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item2);
-                        newPlayer.PlayerStats.Item3Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item3);
-                        newPlayer.PlayerStats.Item4Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item4);
-                        newPlayer.PlayerStats.Item5Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item5);
-                        newPlayer.PlayerStats.Item6Object = _iSummonerContext.GetItemInfoFromId(participant.Stats.Item6);
+                        newPlayer.PlayerStats.ItemList = new List<Item>
+                        {
+                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item0),
+                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item1),
+                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item2),
+                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item6),
+                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item3),
+                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item4),
+                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item5)
+                        };
+
 
                         playedGameTeam.PlayedGamePlayers.Add(newPlayer);
                     }

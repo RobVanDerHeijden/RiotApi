@@ -10,19 +10,13 @@ namespace RiotApi.Model
         public int ParticipantId { get; set; }
         public bool Win { get; set; }
         public int Item0 { get; set; }
-        public Item Item0Object { get; set; }
         public int Item1 { get; set; }
-        public Item Item1Object { get; set; }
         public int Item2 { get; set; }
-        public Item Item2Object { get; set; }
         public int Item3 { get; set; }
-        public Item Item3Object { get; set; }
         public int Item4 { get; set; }
-        public Item Item4Object { get; set; }
         public int Item5 { get; set; }
-        public Item Item5Object { get; set; }
         public int Item6 { get; set; } // Trinket
-        public Item Item6Object { get; set; }
+        public List<Item> ItemList { get; set; }
         public int Kills { get; set; }
         public int Deaths { get; set; }
         public int Assists { get; set; }

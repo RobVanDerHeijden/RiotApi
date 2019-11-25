@@ -98,10 +98,11 @@ body {
     display: block;
 }
 .teams-wrap {
-
+    
 }
 .team-block {
     display: inline-block;
+    border-style: inset;
 }
 .player-block {
     width: 450px;
@@ -136,7 +137,14 @@ img.player-summoner-spell-image {
 }
 .player-item {
     float: left;
+    width: 25px;
+    height: 25px;
 }
 img.player-item-image {
     width: 25px;
+}
+.player-item.item-empty {
+    background: #a5a5a5;
+    border-style: ridge;
+    border-width: 3px;
 }
