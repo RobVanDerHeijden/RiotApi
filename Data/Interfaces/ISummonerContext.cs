@@ -23,6 +23,8 @@ namespace Data.Interfaces
         Champion GetChampionInfoFromId(int championId);
         SummonerSpell GetSummonerSpellInfoFromId(int summonerSpellId);
         Item GetItemInfoFromId(int itemId);
+        RunePath GetRunePathInfoFromId(int runePathId);
+
         Position GetPositionFromRoleAndLane(string role, string lane);
         QueueType GetQueueTypeInfoFromId(int queueTypeId);
     }

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Model.DTOModels
+namespace Model
 {
-    public class ChampionCollection
+    public class SummonerSpellCollection
     {
         [JsonProperty("type")]
         public string CollectionType { get; set; }
         [JsonProperty("data")]
-        public Dictionary<string, Champion> ChampionInfos { get; set; }
-        public List<Champion> ChampionInfoList { get; set; }
+        public Dictionary<string, SummonerSpell> SummonerSpellInfos { get; set; }
+        public List<SummonerSpell> SummonerSpellInfoList { get; set; }
     }
 }

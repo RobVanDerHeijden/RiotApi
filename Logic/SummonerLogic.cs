@@ -93,12 +93,15 @@ namespace Logic
                             _iSummonerContext.GetItemInfoFromId(participant.Stats.Item0),
                             _iSummonerContext.GetItemInfoFromId(participant.Stats.Item1),
                             _iSummonerContext.GetItemInfoFromId(participant.Stats.Item2),
-                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item6),
                             _iSummonerContext.GetItemInfoFromId(participant.Stats.Item3),
                             _iSummonerContext.GetItemInfoFromId(participant.Stats.Item4),
-                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item5)
+                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item5),
+                            _iSummonerContext.GetItemInfoFromId(participant.Stats.Item6)
                         };
-
+                        newPlayer.PlayerStats.PrimaryRunePath =
+                            _iSummonerContext.GetRunePathInfoFromId(participant.Stats.PerkPrimaryStyle);
+                        newPlayer.PlayerStats.SecondaryRunePath =
+                            _iSummonerContext.GetRunePathInfoFromId(participant.Stats.PerkSubStyle);
 
                         playedGameTeam.PlayedGamePlayers.Add(newPlayer);
                     }

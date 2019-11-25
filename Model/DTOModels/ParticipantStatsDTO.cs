@@ -111,7 +111,9 @@ namespace RiotApi.Model
         public int Perk5Var2 { get; set; }
         public int Perk5Var3 { get; set; }
         public int PerkPrimaryStyle { get; set; }
+        public RunePath PrimaryRunePath { get; set; }
         public int PerkSubStyle { get; set; }
+        public RunePath SecondaryRunePath { get; set; }
         // Flat Rune stats
         public int StatPerk0 { get; set; }
         public int StatPerk1 { get; set; }

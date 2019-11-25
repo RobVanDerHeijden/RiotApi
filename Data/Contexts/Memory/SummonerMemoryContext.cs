@@ -7,7 +7,6 @@ using System.Text;
 using Data.Interfaces;
 using Model;
 using Model.DTOModels;
-using Model.DTOModels.Static;
 using Newtonsoft.Json;
 using Version = System.Version;
 
@@ -767,7 +766,8 @@ namespace Data.Contexts.Memory
         private List<Champion> _champions = new List<Champion>();
         private List<SummonerSpell> _summonerSpells = new List<SummonerSpell>();
         private Dictionary<string, Item> _items = new Dictionary<string, Item>();
-
+        private List<RunePath> _runes = new List<RunePath>();
+             
         private static readonly List<Map> _maps = new List<Map>()
         {
             new Map()
@@ -1502,10 +1502,8 @@ namespace Data.Contexts.Memory
                 GetItemCollection();
             }
 
-            //Item itemObject = _items.First(item => item.Key == itemId.ToString());
             if (_items.TryGetValue(itemId.ToString(), out var itemObject))
             {
-                /* use myValue */
                 if (itemObject == null)
                 {
                     throw new Exception();
@@ -1517,6 +1515,23 @@ namespace Data.Contexts.Memory
             }
 
             return itemObject;
+        }
+
+
+        public RunePath GetRunePathInfoFromId(int runePathId)
+        {
+            if (_runes != null && _runes.Count == 0)
+            {
+                GetRuneCollection();
+            }
+
+            RunePath rune = _runes.First(item => item.Id == runePathId);
+            if (rune == null)
+            {
+                throw new Exception();
+            }
+
+            return rune;
         }
 
         public PlayedGame GetPlayedGameInfoFromId(string region, long gameId)
@@ -1558,7 +1573,6 @@ namespace Data.Contexts.Memory
             return null;
         }
         
-
         // API Helpers
         protected HttpResponseMessage GetHttpResponse(string URL)
         {
@@ -1646,10 +1660,25 @@ namespace Data.Contexts.Memory
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var itemsCollection = JsonConvert.DeserializeObject<ItemCollection>(content);
-                List<Item> keyValuePairs = itemsCollection.ItemInfos.Values.ToList();
                 _items = itemsCollection.ItemInfos;
-                //itemsCollection.ItemInfoList = _items;
                 return itemsCollection;
+            }
+
+            return null;
+        }
+
+        public List<RunePath> GetRuneCollection()
+        {
+            string path = "http://ddragon.leagueoflegends.com/cdn/" + GetPatchVersion() + "/data/en_US/runesReforged.json";
+
+            HttpResponseMessage response = GetHttpResponse(path);
+            string content = response.Content.ReadAsStringAsync().Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var runesCollection = JsonConvert.DeserializeObject<List<RunePath>>(content);
+                _runes = runesCollection;
+                return runesCollection;
             }
 
             return null;

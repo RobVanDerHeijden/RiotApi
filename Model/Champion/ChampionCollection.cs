@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Model.DTOModels.Static
+namespace Model
 {
-    public class ItemCollection
+    public class ChampionCollection
     {
         [JsonProperty("type")]
         public string CollectionType { get; set; }
         [JsonProperty("data")]
-        public Dictionary<string, Item> ItemInfos { get; set; }
-        public List<Item> ItemInfoList { get; set; }
+        public Dictionary<string, Champion> ChampionInfos { get; set; }
+        public List<Champion> ChampionInfoList { get; set; }
     }
 }
