@@ -1,0 +1,76 @@
+﻿@model WebApp.Models.SummonerViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Summoner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Summoner.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EncryptedSummonerId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Summoner.Region)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EncryptedSummonerId)
+        </dd>
+
+        @*<dd>
+            @Html.DisplayFor(model => model.EncryptedSummonerId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AccountId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SummonerLevel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SummonerLevel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileIconId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProfileIconId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HighestPreviousRank)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HighestPreviousRank)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RevisionDateLong)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RevisionDateLong)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdated)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdated)
+        </dd>*@
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

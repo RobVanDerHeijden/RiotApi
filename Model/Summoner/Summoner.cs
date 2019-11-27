@@ -27,7 +27,9 @@ namespace Model
         public LiveGame LiveGame { get; set; }
         public DateTime LastUpdated { get; set; }
 
+        
         // TODO: seriously consider adding region to Summoner, could make api cals easier, since a summoner is always linked to ONE region
+        public string Region { get; set; }
 
     }
 }

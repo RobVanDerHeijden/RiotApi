@@ -22,33 +22,35 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
-            List<string> regions = _summonerLogic.GetRegions();
-            ViewBag.RegionList = regions;
+            ViewBag.RegionList = _summonerLogic.GetRegions();
 
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(ViewModelMain summonerViewModel)
+        public IActionResult Index(SummonerViewModel summonerViewModel)
         {
             // API CALL #1
             Summoner summoner = _summonerLogic.GetSummonerByName(summonerViewModel.Region, summonerViewModel.SummonerName);
             if (summoner == null)
             {
-                // TODO: Make this a rederect? to a summoner not found page perhaps
+                // TODO: Make this a redirect? to a summoner not found page perhaps
                 TempData["SummonerName"] = "SUMMONER NOT FOUND";
             }
             else
             {
+                summonerViewModel.Summoner = summoner;
                 ViewBag.Summoner = summoner;
 
                 // API CALL #2 + 1 Per Match
                 SummonerPlayedGamesList summonerPlayedGames = _summonerLogic.GetSummonerPlayedGames(summonerViewModel.Region, summoner);
+                summonerViewModel.SummonerPlayedGames = summonerPlayedGames.Matches;
                 ViewBag.PlayedGames = summonerPlayedGames.Matches;
 
                 // API CALL #3
                 List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(summonerViewModel.Region, summoner.EncryptedSummonerId);
+                summonerViewModel.SummonerRanks = summonerRanks;
                 ViewBag.SummonerRanks = summonerRanks;
                 // API CALL tbd
                 // TODO: get the leaguename from each rank
@@ -57,12 +59,12 @@ namespace WebApp.Controllers
                 // TODO: get the summoner-champions + mastery(MASTERY IS SEPERATE CALL) + winrate and KDA (FIGURE OUT HOW I WANT TO CALCULATE THIS)
             }
 
-            List<string> regions = _summonerLogic.GetRegions();
-            ViewBag.RegionList = regions;
+            summonerViewModel.RegionList = _summonerLogic.GetRegions();
+            ViewBag.RegionList = _summonerLogic.GetRegions();
 
-            return View();
+
+            return View(summonerViewModel);
         }
-
 
 
         public IActionResult About()

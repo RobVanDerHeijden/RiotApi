@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Model;
 
 namespace WebApp.Models
 {
@@ -9,5 +11,13 @@ namespace WebApp.Models
 
         [Required(ErrorMessage = "Fill in Region!")]
         public string Region { get; set; }
+
+        public Summoner Summoner { get; set; }
+
+        public List<PlayedGame> SummonerPlayedGames { get; set; }
+
+        public List<Rank> SummonerRanks { get; set; }
+
+        public List<string> RegionList { get; set; }
     }
 }
