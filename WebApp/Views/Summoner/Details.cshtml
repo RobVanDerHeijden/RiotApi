@@ -9,66 +9,252 @@
 <div>
     <h4>Summoner</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Summoner.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EncryptedSummonerId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Summoner.Region)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EncryptedSummonerId)
-        </dd>
+</div>
+<div>
+    @if (Model.Summoner != null)
+    {
+        <div class="col-md-12" style="border: 1px solid red">
+            <div class="summoner">
+                <div class="profile-icon">
+                    <img src="~/images/profileicon/@(Model.Summoner.ProfileIconId).png" class="profile-icon-image">
+                </div>
+                <div class="summoner-info">
+                    <div class="summoner-name">@Model.Summoner.Name</div>
+                    <div class="summoner-level">Level: @Model.Summoner.SummonerLevel</div>
+                </div>
+            </div>
+            @if (Model.SummonerRanks != null)
+            {
+                <div class="summoner-ranks">
+                    <div class="rank-tabs-buttons">
+                        @foreach (var rank in Model.SummonerRanks)
+                        {
+                            switch (rank.QueueType)
+                            {
+                                // TODO: Order these by order set underneath
+                                case "RANKED_SOLO_5x5":
+                                    <button onclick="openRank('Solo-5x5')">Solo 5x5</button>
+                                    break;
+                                case "RANKED_FLEX_SR":
+                                    <button onclick="openRank('Flex-5x5')">Flex 5x5</button>
+                                    break;
+                                case "RANKED_FLEX_TT":
+                                    <button onclick="openRank('Flex-3x3')">Flex 3x3</button>
+                                    break;
+                                case "RANKED_TFT":
+                                    <button onclick="openRank('TFT')">TFT</button>
+                                    break;
+                                default:
+                                    <span>No Rank Found</span>
+                                    break;
+                            }
+                        }
+                    </div>
+                    <div class="rank-tabs">
+                        @foreach (var rank in Model.SummonerRanks)
+                        {
+                            switch (rank.QueueType)
+                            {
+                                case "RANKED_SOLO_5x5":
+                                    <div id="Solo-5x5" class="rank-tab">
+                                        <div class="rank-icon">
+                                            <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
+                                        </div>
+                                        <div class="rank-info">
+                                            <h2>Solo 5x5</h2>
+                                            <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                            <div>W:@rank.Wins L:@rank.Losses</div>
+                                        </div>
+                                    </div>
+                                    break;
+                                case "RANKED_FLEX_SR":
+                                    <div id="Flex-5x5" class="rank-tab" style="display: none">
+                                        <div class="rank-icon">
+                                            <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
+                                        </div>
+                                        <div class="rank-info">
+                                            <h2>Flex 5x5</h2>
+                                            <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                            <div>W :@rank.Wins L: @rank.Losses</div>
+                                        </div>
+                                    </div>
+                                    break;
+                                case "RANKED_FLEX_TT":
+                                    <div id="Flex-3x3" class="rank-tab" style="display: none">
+                                        <div class="rank-icon">
+                                            <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
+                                        </div>
+                                        <div class="rank-info">
+                                            <h2>Flex 3x3</h2>
+                                            <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                            <div>W :@rank.Wins L: @rank.Losses</div>
+                                        </div>
+                                    </div>
+                                    break;
+                                case "RANKED_TFT":
+                                    <div id="TFT" class="rank-tab" style="display: none">
+                                        <div class="rank-icon">
+                                            <img src="~/images/ranks/Emblem_@(rank.Tier).png" class="rank-icon-image" alt="Rank-Tier">
+                                        </div>
+                                        <div class="rank-info">
+                                            <h2>TFT</h2>
+                                            <div>@rank.Tier @rank.Division @rank.LeaguePoints LP</div>
+                                            <div>W :@rank.Wins L: @rank.Losses</div>
+                                        </div>
+                                    </div>
+                                    break;
+                                default:
+                                    <span>No Rank Found</span>
+                                    break;
+                            }
+                        }
+                    </div>
+                </div>
+            }
+            @if (Model.SummonerPlayedGames != null)
+            {
+                <div class="played-games-history-list">
+                    @foreach (var game in Model.SummonerPlayedGames)
+                    {
+                        <div class="played-game-wrap">
+                            <div class="played-game" id="@game.GameId" title="GameId: @game.GameId">
+                                <div class="played-game-champion-icon">
 
-        @*<dd>
-            @Html.DisplayFor(model => model.EncryptedSummonerId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AccountId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AccountId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SummonerLevel)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SummonerLevel)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ProfileIconId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ProfileIconId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HighestPreviousRank)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.HighestPreviousRank)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RevisionDateLong)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RevisionDateLong)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastUpdated)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastUpdated)
-        </dd>*@
-    </dl>
+                                    @*@if (game.Season != 3)
+                                        {
+                                            var playerIdentity = game.participantIdentities.Single(s => s.ParticipantId == Model.Summoner.Name);
+                                            var asd = game.participantIdentities.Find(x => x.GetId() == "xy");
+                                            var currentSummoner = game.participantIdentities.player.summonername == Model.Summoner.Name;
+                                            //<img src="" id="summoner-champion-@game.GameId"/>
+
+                                            <img src="~/images/champion/@(@game.ChampionObject.ChampionName).png" id="summoner-champion-@game.GameId" class="played-game-champion-icon-image" title="ChampionID: @game.ChampionId | @game.ChampionObject.ChampionName" alt="Champion">
+                                        }*@
+                                </div>
+                                <div class="played-game-info">
+                                    <div class="queueTypeGame" title="QueueTypeId: @game.QueueTypeId">QueueType: @game.QueueType.Description</div>
+                                    <div class="timeSinceGame" title="@game.DateCreated.ToString("dd-MM-yyyy HH:mm:ss")">
+                                        Time since:
+                                        @{
+                                            TimeSpan timeSince = DateTime.Now.Subtract(game.DateCreated);
+                                            double timeSinceInDays = (Math.Floor(timeSince.TotalDays));
+                                            double timeSinceInHours = (Math.Floor(timeSince.TotalHours));
+                                        }
+                                        @switch (timeSinceInDays)
+                                        {
+                                            case 0:
+
+                                                switch (timeSinceInHours)
+                                                {
+                                                    case 0:
+                                                        @Math.Floor(timeSince.TotalMinutes)
+                                                        @: Minutes ago
+                                                        break;
+                                                    case 1:
+                                                        @:1 Hour ago
+                                                        break;
+                                                    default:
+                                                        @timeSinceInHours
+                                                        @: Hours ago
+                                                        break;
+                                                }
+                                                break;
+                                            case 1:
+                                                @:1 day ago
+                                                break;
+                                            default:
+                                                @timeSinceInDays
+                                                @: Days ago
+                                                break;
+                                        }
+                                    </div>
+                                </div>
+
+                                @if (game.PlayedGameTeams != null)
+                                {
+                                    <div class="teams-wrap">
+                                        @foreach (var team in game.PlayedGameTeams)
+                                        {
+                                            <div class="team-block">
+                                                <div>TeamId: @team.TeamId</div>
+                                                <div>@team.Win</div>
+
+                                                @foreach (var player in team.PlayedGamePlayers)
+                                                {
+                                                    @*if (player.SummonerName == Model.Summoner.Name)
+                                                        {
+                                                            <script>$("#summoner-champion-@game.GameId").attr("src", "~/images/champion/@(player.ChampionObject.ChampionName).png");</script>
+                                                        }*@
+                                                    <div class="player-block">
+                                                        <div class="player-display-block-1">
+                                                            <div class="played-game-champion">
+                                                                <img src="~/images/champion/@(@player.ChampionObject.KeyName).png" class="played-game-champion-icon-image" title="@player.ChampionObject.ChampionName | ChampionID: @player.ChampionId" alt="Champion @player.ChampionObject.ChampionName">
+                                                            </div>
+                                                            <div class="player-summoner-spells">
+                                                                @if (player.SummonerSpell1Object != null && player.SummonerSpell2Object != null)
+                                                                {
+                                                                    <img src="~/images/spell/@(@player.SummonerSpell1Object.KeyName).png" class="player-summoner-spell-image" title="Spell1: @player.SummonerSpell1Id" />
+                                                                    <img src="~/images/spell/@(@player.SummonerSpell2Object.KeyName).png" class="player-summoner-spell-image" title="Spell2: @player.SummonerSpell2Id" />
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div class="player-display-block-2">
+                                                            <div class="player-items">
+                                                                @foreach (var item in player.PlayerStats.ItemList)
+                                                                {
+                                                                    if (item != null)
+                                                                    {
+                                                                        <div class="player-item" title="ID: @item.Key | Name: @item.Name | TotalGold: @item.ItemGoldInfos["total"]">
+                                                                            <img src="~/images/item/@(@item.Key).png" class="player-item-image" alt="Item @item.Name" />
+                                                                        </div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="player-item item-empty" title="ID: 0 | Name: null"></div>
+                                                                    }
+                                                                }
+                                                            </div>
+
+                                                            <div class="player-runepaths">
+                                                                @if (player.PlayerStats.PrimaryRunePath != null && player.PlayerStats.SecondaryRunePath != null)
+                                                                {
+                                                                    <img src="~/images/@(@player.PlayerStats.PrimaryRunePath.ImageLocation)" class="player-runepath-image" title="Primary perk: @player.PlayerStats.PerkPrimaryStyle" />
+                                                                    <img src="~/images/@(@player.PlayerStats.SecondaryRunePath.ImageLocation)" class="player-runepath-image" title="Secondary perk: @player.PlayerStats.PerkSubStyle" />
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div class="player-info">
+                                                            <div class="player-name"><a class="player-name-link">@player.SummonerName</a></div>
+                                                            <div class="player-kda-full"><b>@player.PlayerStats.Kills / @player.PlayerStats.Deaths / @player.PlayerStats.Assists</b></div>
+                                                            @if (player.PlayerStats.Deaths > 0)
+                                                            {
+                                                                float kda = ((float)@player.PlayerStats.Kills + (float)@player.PlayerStats.Assists) / (float)@player.PlayerStats.Deaths;
+                                                                <div class="player-kda"><b>@($"{kda:n2}") KDA</b></div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="player-kda"><b>Perfect KDA</b></div>
+                                                            }
+                                                            <div class="player-cs"><img src="~/images/ui/minion.png" class="minion-image" title="minionImage" alt="Minion"> CS: @player.PlayerStats.TotalMinionsKilled</div>
+
+                                                        </div>
+
+                                                        <div class="player-runes">
+                                                            Primary perk: @player.PlayerStats.PerkPrimaryStyle
+                                                            Secondary perk: @player.PlayerStats.PerkSubStyle
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

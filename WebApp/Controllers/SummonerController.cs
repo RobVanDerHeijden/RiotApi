@@ -6,6 +6,7 @@ using Data.Interfaces;
 using Logic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Model;
 using WebApp.Models;
 
 namespace WebApp.Controllers
@@ -32,10 +33,35 @@ namespace WebApp.Controllers
         // GET: Summoner/Details/5
         public ActionResult Details(string id, string region)
         {
-            // GetSummonerList
-            // If summoner is in summonerList
             SummonerViewModel sVmodel = new SummonerViewModel();
-            sVmodel.Summoner = _summonerLogic.GetSummonerByName(region, id);
+
+            // API CALL #1
+            Summoner summoner = _summonerLogic.GetSummonerByName(region, id);
+            if (summoner == null)
+            {
+                // TODO: Make this a redirect? to a summoner not found page perhaps
+                TempData["SummonerName"] = "SUMMONER NOT FOUND";
+            }
+            else
+            {
+                sVmodel.Summoner = summoner;
+
+                // API CALL #2 + 1 Per Match
+                SummonerPlayedGamesList summonerPlayedGames = _summonerLogic.GetSummonerPlayedGames(region, summoner);
+                sVmodel.SummonerPlayedGames = summonerPlayedGames.Matches;
+
+                // API CALL #3
+                List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(region, summoner.EncryptedSummonerId);
+                sVmodel.SummonerRanks = summonerRanks;
+                // API CALL tbd
+                // TODO: get the leaguename from each rank
+
+                // API CALLSSS tbd
+                // TODO: get the summoner-champions + mastery(MASTERY IS SEPERATE CALL) + winrate and KDA (FIGURE OUT HOW I WANT TO CALCULATE THIS)
+            }
+
+            sVmodel.RegionList = _summonerLogic.GetRegions();
+            
             return View(sVmodel);
         }
 

@@ -32,7 +32,7 @@ namespace WebApp.Controllers
         public IActionResult Index(SummonerViewModel summonerViewModel)
         {
             // API CALL #1
-            Summoner summoner = _summonerLogic.GetSummonerByName(summonerViewModel.Region, summonerViewModel.SummonerName);
+            Summoner summoner = _summonerLogic.GetSummonerByName(summonerViewModel.Region, summonerViewModel.Id);
             if (summoner == null)
             {
                 // TODO: Make this a redirect? to a summoner not found page perhaps

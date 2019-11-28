@@ -37,7 +37,12 @@ body {
 }
 
 /****** START CUSTOM CSS ROB ******/
-
+/* Summoner Lookup Input Area */
+.summoner-input-area {
+    margin: auto;
+    width: 300px;
+    height: 100%;
+}
 /* Summoner Info */
 .summoner {
     margin-top: 10px;
