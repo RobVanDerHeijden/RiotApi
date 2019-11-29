@@ -177,14 +177,32 @@
                                             <div class="team-block">
                                                 <div>TeamId: @team.TeamId</div>
                                                 <div>@team.Win</div>
-
+                                                <div class="team-objectives"><img src="~/images/ui/tower.png" class="team-objective-icon" />: @team.TowerKills | <img src="~/images/ui/dragon.png" class="team-objective-icon" />: @team.DragonKills | <img src="~/images/ui/baron.png" class="team-objective-icon" />: @team.BaronKills</div>
+                                                <div class="team-bans">
+                                                    @{
+                                                        var counter = 0;
+                                                    } 
+                                                    @foreach (var ban in team.Bans)
+                                                    {
+                                                        <div class="ban-image-container" style="left: @(counter * 50)px" title="[Turn: @ban.PickTurn / ChampId: @ban.ChampionId / ChampName: @ban.ChampionObject.ChampionName]">
+                                                            <div class="ban-image-champion ban-image">
+                                                                <img src="~/images/champion/@(@ban.ChampionObject.KeyName).png" />
+                                                            </div>
+                                                            <div class="ban-image-cross ban-image">
+                                                                <img src="~/images/ui/red-cross.png" />
+                                                            </div>
+                                                        </div>
+                                                        counter += 1;
+                                                    }
+                                                </div>
                                                 @foreach (var player in team.PlayedGamePlayers)
                                                 {
                                                     @*if (player.SummonerName == Model.Summoner.Name)
                                                         {
                                                             <script>$("#summoner-champion-@game.GameId").attr("src", "~/images/champion/@(player.ChampionObject.ChampionName).png");</script>
                                                         }*@
-                                                    <div class="player-block">
+                                                    var selectedSummoner = (player.SummonerName == Model.Summoner.Name) ? "selected-summoner" : "";
+                                                    <div class="player-block @selectedSummoner">
                                                         <div class="player-display-block-1">
                                                             <div class="played-game-champion">
                                                                 <img src="~/images/champion/@(@player.ChampionObject.KeyName).png" class="played-game-champion-icon-image" title="@player.ChampionObject.ChampionName | ChampionID: @player.ChampionId" alt="Champion @player.ChampionObject.ChampionName">
@@ -238,10 +256,6 @@
 
                                                         </div>
 
-                                                        <div class="player-runes">
-                                                            Primary perk: @player.PlayerStats.PerkPrimaryStyle
-                                                            Secondary perk: @player.PlayerStats.PerkSubStyle
-                                                        </div>
                                                     </div>
                                                 }
                                             </div>

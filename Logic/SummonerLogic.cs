@@ -64,6 +64,10 @@ namespace Logic
                     foreach (PlayedGameTeam playedGameTeam in playedGame.PlayedGameTeams)
                     {
                         playedGameTeam.PlayedGamePlayers = new List<SummonerPlayedGame>();
+                        foreach (var ban in playedGameTeam.Bans)
+                        {
+                            ban.ChampionObject = _iSummonerContext.GetChampionInfoFromId(ban.ChampionId);
+                        }
                         foreach (var participant in playedGame.Participants.Where(n => n.TeamId == playedGameTeam.TeamId))
                         {
                             var playerIdentity = playedGame.ParticipantIdentities.Single(s => s.ParticipantId == participant.ParticipantId);
@@ -82,8 +86,7 @@ namespace Logic
                                 Position = _iSummonerContext.GetPositionFromRoleAndLane(participant.Timeline.Role, participant.Timeline.Lane),
 
                                 ChampionObject = _iSummonerContext.GetChampionInfoFromId(participant.ChampionId),
-
-
+                                
                                 // TODO: Add the rest of the variables, or find better solution for this
                                 PlayerStats = participant.Stats
                             };

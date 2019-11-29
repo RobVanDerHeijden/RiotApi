@@ -1444,6 +1444,14 @@ namespace Data.Contexts.Memory
             {
                 return JsonConvert.DeserializeObject<Summoner>(content);
             }
+            if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                return new Summoner()
+                {
+                    Name = "API_KEY_INVALLID"
+                };
+                throw new Exception(); // API Key probally no longer vallid
+            }
 
             return null;
         }
@@ -1470,9 +1478,18 @@ namespace Data.Contexts.Memory
                 GetChampionCollection();
             }
             
-            Champion champion = _champions.First(item => item.Key == championId);
+            Champion champion = _champions.FirstOrDefault(item => item.Key == championId);
             if (champion == null)
             {
+                return new Champion()
+                {
+                    ChampionName = "NoChampionFound",
+                    Description = "No champion was found with given Key",
+                    Key = -1,
+                    KeyName = "NoChamp",
+                    Tags = new List<string>() { "None" },
+                    Title = "NoTitle"
+                };
                 throw new Exception();
             }
                 

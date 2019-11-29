@@ -14,10 +14,7 @@ namespace WebApp.Controllers
     public class SummonerController : Controller
     {
         private readonly SummonerLogic _summonerLogic;
-
-        // TODO: Add routes
-        // TODO: Add viewmodels
-
+        
         public SummonerController(ISummonerContext summonerContext)
         {
             _summonerLogic = new SummonerLogic(summonerContext);
