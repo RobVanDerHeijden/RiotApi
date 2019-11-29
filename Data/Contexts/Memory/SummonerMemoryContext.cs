@@ -1450,7 +1450,13 @@ namespace Data.Contexts.Memory
                 {
                     Name = "API_KEY_INVALLID"
                 };
-                throw new Exception(); // API Key probally no longer vallid
+            }
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return new Summoner()
+                {
+                    Name = "SUMMONER_NOT_FOUND"
+                };
             }
 
             return null;
