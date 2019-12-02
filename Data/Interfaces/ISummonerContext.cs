@@ -7,7 +7,7 @@ namespace Data.Interfaces
 {
     public interface ISummonerContext
     {
-        List<string> GetRegions();
+        
 
         // Get Summoner
         Summoner GetSummonerByName(string region, string summonerName);
@@ -20,12 +20,14 @@ namespace Data.Interfaces
         List<Rank> GetSummonerRanks(string region, string encryptedSummonerId);
 
         // General
+        List<string> GetRegions();
         Champion GetChampionInfoFromId(int championId);
         SummonerSpell GetSummonerSpellInfoFromId(int summonerSpellId);
         Item GetItemInfoFromId(int itemId);
         RunePath GetRunePathInfoFromId(int runePathId);
+        QueueType GetQueueTypeInfoFromId(int queueTypeId);
 
         Position GetPositionFromRoleAndLane(string role, string lane);
-        QueueType GetQueueTypeInfoFromId(int queueTypeId);
+        
     }
 }

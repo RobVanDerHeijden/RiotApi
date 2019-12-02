@@ -108,6 +108,7 @@ body {
 img.team-objective-icon {
     border-radius: 20px;
     width: 40px;
+    height: 40px;
     border: 3px double #6c0c0c;
 }
 .team-block {
@@ -115,9 +116,18 @@ img.team-objective-icon {
     border-style: inset;
     width: 49%;
 }
+.team-block.victorious-team {
+    background-color: #8fbc8f;
+}
+.team-block.non-victorious-team {
+    background-color: #e3b6a5;
+}
 .team-bans {
     height: 50px;
     margin-bottom: 5px;
+}
+.no-bans {
+    height: 0px;
 }
 .ban-image-container {
     position: relative;
