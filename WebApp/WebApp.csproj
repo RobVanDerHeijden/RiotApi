@@ -19,14 +19,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="API\ExampleJson\exampleEuwDiamond1.json" />
-    <None Include="API\ExampleJson\exampleChampionFullAatrox.json" />
+    <None Include="API\ExampleJson\NotUsed\exampleEuwDiamond1.json" />
+    <None Include="API\ExampleJson\NotUsed\exampleChampionFullAatrox.json" />
     <None Include="API\ExampleJson\exampleChampionMasteryDTO.json" />
     <None Include="API\ExampleJson\exampleItems.json" />
     <None Include="API\ExampleJson\exampleLiveMatch.json" />
     <None Include="API\ExampleJson\exampleMatchDTO.json" />
     <None Include="API\ExampleJson\exampleMatchlistDTO.json" />
-    <None Include="API\ExampleJson\exampleMatchTimelineDTO.json" />
+    <None Include="API\ExampleJson\NotUsed\exampleMatchTimelineDTO.json" />
     <None Include="API\ExampleJson\exampleRunesReforged.json" />
     <None Include="API\ExampleJson\exampleSummonerDTO.json" />
     <None Include="API\ExampleJson\exampleSummonerSpells.json" />

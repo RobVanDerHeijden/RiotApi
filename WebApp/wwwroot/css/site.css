@@ -150,10 +150,11 @@ img.team-objective-icon {
     /*width: 450px;*/
     height: 100px;
     clear: both;
+    border: 1px solid black;
 }
 .selected-summoner {
-    border: 1px solid red;
-    background-color: #fafad2;
+    /*border: 1px solid red;*/
+    background-color: #ffff70;
 }
 a.player-name-link {
     display: block;
