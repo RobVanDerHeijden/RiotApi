@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Contexts\API\" />
+    <Folder Include="Contexts\APIMemory\" />
     <Folder Include="Repositorys\" />
   </ItemGroup>
 

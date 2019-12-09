@@ -9,9 +9,9 @@ namespace Logic
 {
     public class SummonerLogic
     {
-        private readonly ISummonerContext _iSummonerContext;
+        private readonly ISummonerSQLContext _iSummonerContext;
 
-        public SummonerLogic(ISummonerContext summonerContext)
+        public SummonerLogic(ISummonerSQLContext summonerContext)
         {
             _iSummonerContext = summonerContext;
         }

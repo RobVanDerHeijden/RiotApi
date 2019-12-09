@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data.Contexts.Memory;
+using Data.Contexts.SQL;
 using Data.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +38,7 @@ namespace WebApp
 
             //services.AddTransient<ISummonerContext, SummonerMemoryContext>(); // Always Different: new instance
             //services.AddSingleton<ISummonerContext, SummonerMemoryContext>(); // Same with same request
-            services.AddScoped<ISummonerContext, SummonerMemoryContext>(); // Same for every object and every request
+            services.AddScoped<ISummonerSQLContext, SummonerSQLContext>(); // Same for every object and every request
             //services.AddScoped<ISummonerContext, SummonerSqlContext>(); // Same for every object and every request
 
 

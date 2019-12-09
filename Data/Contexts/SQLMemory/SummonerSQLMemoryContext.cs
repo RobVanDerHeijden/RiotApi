@@ -12,7 +12,7 @@ using Version = System.Version;
 
 namespace Data.Contexts.Memory
 {
-    public class SummonerMemoryContext : ISummonerContext
+    public class SummonerSQLMemoryContext : ISummonerSQLContext
     {
         private readonly List<string> _regions = new List<string>()
         {
@@ -767,7 +767,7 @@ namespace Data.Contexts.Memory
         private List<SummonerSpell> _summonerSpells = new List<SummonerSpell>();
         private Dictionary<string, Item> _items = new Dictionary<string, Item>();
         private List<RunePath> _runes = new List<RunePath>();
-             
+        
         private static readonly List<Map> _maps = new List<Map>()
         {
             new Map()

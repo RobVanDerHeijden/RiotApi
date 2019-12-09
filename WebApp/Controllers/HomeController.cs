@@ -15,7 +15,7 @@ namespace WebApp.Controllers
         // TODO: Add routes
         // TODO: Add viewmodels
 
-        public HomeController(ISummonerContext summonerContext)
+        public HomeController(ISummonerSQLContext summonerContext)
         {
             _summonerLogic = new SummonerLogic(summonerContext);
         }
@@ -49,7 +49,7 @@ namespace WebApp.Controllers
                 ViewBag.PlayedGames = summonerPlayedGames.Matches;
 
                 // API CALL #3
-                List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(summonerViewModel.Region, summoner.EncryptedSummonerId);
+                List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(summonerViewModel.Region, summoner.SummonerId);
                 summonerViewModel.SummonerRanks = summonerRanks;
                 ViewBag.SummonerRanks = summonerRanks;
                 // API CALL tbd

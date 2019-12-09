@@ -15,7 +15,7 @@ namespace WebApp.Controllers
     {
         private readonly SummonerLogic _summonerLogic;
         
-        public SummonerController(ISummonerContext summonerContext)
+        public SummonerController(ISummonerSQLContext summonerContext)
         {
             _summonerLogic = new SummonerLogic(summonerContext);
         }
@@ -48,7 +48,7 @@ namespace WebApp.Controllers
                 sVmodel.SummonerPlayedGames = summonerPlayedGames.Matches;
 
                 // API CALL #3
-                List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(region, summoner.EncryptedSummonerId);
+                List<Rank> summonerRanks = _summonerLogic.GetSummonerRanks(region, summoner.SummonerId);
                 sVmodel.SummonerRanks = summonerRanks;
                 // API CALL tbd
                 // TODO: get the leaguename from each rank

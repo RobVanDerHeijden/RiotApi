@@ -5,7 +5,7 @@ using Model;
 
 namespace Data.Interfaces
 {
-    public interface ISummonerContext
+    public interface ISummonerSQLContext
     {
         
 
