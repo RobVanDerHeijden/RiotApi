@@ -2,23 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Data.Contexts.Memory;
 using Data.Interfaces;
+using Data.Repositorys;
 using Model;
 
 namespace Logic
 {
     public class SummonerLogic
     {
-        private readonly ISummonerSQLContext _iSummonerContext;
+        private readonly ISummonerSQLContext _iSummonerContext = new SummonerSQLMemoryContext();
+        private readonly SummonerRepo _summonerRepo = new SummonerRepo();
 
-        public SummonerLogic(ISummonerSQLContext summonerContext)
+        //public SummonerLogic(ISummonerSQLContext summonerContext, SummonerRepo summonerRepo)
+        //{
+        //    _iSummonerContext = summonerContext;
+        //    _summonerRepo = summonerRepo;
+        //}
+        //public SummonerLogic(SummonerRepo summonerRepo)
+        //{
+        //    _summonerRepo = summonerRepo;
+        //}
+        public SummonerLogic()
         {
-            _iSummonerContext = summonerContext;
+           
         }
 
         public List<string> GetRegions()
         {
-            return _iSummonerContext.GetRegions();
+            return _summonerRepo.GetRegions();
         }
         public Summoner GetSummonerByName(string region, string summonerName)
         {

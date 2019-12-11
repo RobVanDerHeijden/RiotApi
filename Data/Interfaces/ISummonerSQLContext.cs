@@ -7,10 +7,10 @@ namespace Data.Interfaces
 {
     public interface ISummonerSQLContext
     {
-        
-
-        // Get Summoner
+        // Summoner
         Summoner GetSummonerByName(string region, string summonerName);
+        void SaveNewSummoner(Summoner summoner);
+        void UpdateSummoner(Summoner summoner);
 
         // Get Games
         SummonerPlayedGamesList GetSummonerPlayedGames(string region, string summonerIdAccount);

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using Data.Interfaces;
+using Data.Repositorys;
 using Logic;
 using Microsoft.AspNetCore.Mvc;
 using Model;
@@ -10,15 +11,19 @@ namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly SummonerLogic _summonerLogic;
+        private readonly SummonerLogic _summonerLogic = new SummonerLogic();
 
         // TODO: Add routes
         // TODO: Add viewmodels
 
-        public HomeController(ISummonerSQLContext summonerContext)
-        {
-            _summonerLogic = new SummonerLogic(summonerContext);
-        }
+        //public HomeController(ISummonerSQLContext summonerContext, SummonerRepo summonerRepo)
+        //{
+        //    _summonerLogic = new SummonerLogic(summonerContext, summonerRepo);
+        //}
+        //public HomeController(SummonerRepo summonerRepo)
+        //{
+        //    _summonerLogic = new SummonerLogic(summonerRepo);
+        //}
 
         public IActionResult Index()
         {

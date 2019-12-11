@@ -60,6 +60,16 @@ namespace Data.Contexts.SQL
             return summoner;
         }
 
+        public void SaveNewSummoner(Summoner summoner)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateSummoner(Summoner summoner)
+        {
+            throw new NotImplementedException();
+        }
+
         public SummonerPlayedGamesList GetSummonerPlayedGames(string region, string summonerIdAccount)
         {
             SummonerPlayedGamesList summonerPlayedGamesList = new SummonerPlayedGamesList();

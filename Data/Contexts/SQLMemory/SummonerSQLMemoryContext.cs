@@ -1462,6 +1462,16 @@ namespace Data.Contexts.Memory
             return null;
         }
 
+        public void SaveNewSummoner(Summoner summoner)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateSummoner(Summoner summoner)
+        {
+            throw new NotImplementedException();
+        }
+
         public SummonerPlayedGamesList GetSummonerPlayedGames(string region, string summonerIdAccount)
         {
             string path = "match/v4/matchlists/by-account/" + summonerIdAccount;

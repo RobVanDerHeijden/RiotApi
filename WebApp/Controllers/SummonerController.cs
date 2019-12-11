@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data.Interfaces;
+using Data.Repositorys;
 using Logic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +14,17 @@ namespace WebApp.Controllers
 {
     public class SummonerController : Controller
     {
-        private readonly SummonerLogic _summonerLogic;
-        
-        public SummonerController(ISummonerSQLContext summonerContext)
-        {
-            _summonerLogic = new SummonerLogic(summonerContext);
-        }
+        //private readonly SummonerLogic _summonerLogic;
+        private readonly SummonerLogic _summonerLogic = new SummonerLogic();
+
+        //public SummonerController(ISummonerSQLContext summonerContext, SummonerRepo summonerRepo)
+        //{
+        //    _summonerLogic = new SummonerLogic(summonerContext, summonerRepo);
+        //}
+        //public SummonerController(SummonerRepo summonerRepo)
+        //{
+        //    _summonerLogic = new SummonerLogic(summonerRepo);
+        //}
         // GET: Summoner
         public ActionResult Index()
         {
@@ -57,7 +63,7 @@ namespace WebApp.Controllers
                 // TODO: get the summoner-champions + mastery(MASTERY IS SEPERATE CALL) + winrate and KDA (FIGURE OUT HOW I WANT TO CALCULATE THIS)
             }
 
-            sVmodel.RegionList = _summonerLogic.GetRegions();
+            //sVmodel.RegionList = _summonerLogic.GetRegions();
             
             return View(sVmodel);
         }
